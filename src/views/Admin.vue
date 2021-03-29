@@ -13,18 +13,19 @@
         <div class="sidebar-content">
           <!-- sidebar-brand  -->
           <div class="sidebar-item sidebar-brand">
-            <a href="#">Vue Shop</a>
+            <router-link :to="{ name : 'Home'}">Vue shop</router-link>
             <div id="close-sidebar" @click="closeMenu">
               <i class="fas fa-times"></i>
             </div>
           </div>
           <!-- sidebar-header  -->
-          <div class="sidebar-item sidebar-header">
+          <div class="sidebar-item sidebar-header d-flex flex-nowrap">
             <div class="user-pic">
               <img
                 class="img-responsive img-rounded"
                 src="/img/svg/user-regular.svg"
                 alt="User picture"
+                width="100px"
               />
             </div>
             <div class="user-info">
@@ -32,7 +33,7 @@
                 >Jhon
                 <strong>Smith</strong>
               </span>
-              <span class="user-role"> {{ email }} </span>
+              <span class="user-role"></span>
               <span class="user-status">
                 <i class="fa fa-circle"></i>
                 <span>Online</span>
@@ -46,29 +47,22 @@
                 <span>Menu</span>
               </li>
 
-              <li>
-                <router-link to="/admin/overview">
-                  <i class="fa fa-chart-line"></i>
-                  <span>Overview</span>
+               <li>
+                <router-link :to="{ name: 'UserProfile'}">
+                  <i class="fa fa-user"></i>
+                  <span>用戶資訊</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/admin/products">
-                  <i class="fab fa-amazon"></i>
+                <router-link :to="{ name: 'Products'}">
+                  <i class="fas fa-box"></i>
                   <span>產品</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/admin/orders">
-                  <i class="fa fa-shopping-cart"></i>
+                <router-link :to="{ name: 'Orders'}">
+                  <i class="far fa-list-alt"></i>
                   <span>訂單</span>
-                </router-link>
-              </li>
-
-              <li>
-                <router-link to="/admin/profile">
-                  <i class="fa fa-user"></i>
-                  <span>用戶資訊</span>
                 </router-link>
               </li>
               <li>

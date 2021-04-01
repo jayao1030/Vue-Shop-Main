@@ -1,68 +1,100 @@
 <template>
-<main role="main">
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below
-                as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text
-                below as a natural lead-in to additional content. This
-                content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+  <main role="main">
+    <div class="album py-5 bg-light">
+      <ProductCardModal />
+      <div class="container">
+        <h1 class="text-center p-5">{{ value }}</h1>
+        <div class="row">
+          <div
+            class="col-md-4"
+            v-for="product in getProducts"
+            :key="product.id"
+          >
+            <div class="card product-item">
+              <carousel :perPage="1">
+                <slide v-for="(image, index) in product.images" :key="index">
+                  <img
+                    :src="image"
+                    class="card-img-top p-1 img-logo"
+                    alt="..."
+                  />
+                </slide>
+              </carousel>
 
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <h5
+                    class="card-title"
+                    style="cursor: pointer"
+                    @click="showDetails(product)"
+                  >
+                    {{ product.name }}
+                  </h5>
+                  <h5 class="card-priceS">$ {{ product.price }}</h5>
                 </div>
-                <small class="text-muted">9 mins</small>
+                <AddToCart :ProductId="product.id" value="加到購物車" />
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-  </div>
-</main>
+  </main>
 </template>
 
 <script>
-export default {};
+import $ from 'jquery';
+import { Carousel, Slide } from 'vue-carousel';
+import { db } from '../firebase/config';
+import AddToCart from '../components/AddToCart.vue';
+import ProductCardModal from '../components/ProductCardModal.vue';
+
+export default {
+  name: 'ProductsSlider',
+  props: {
+    value: {
+      type: String,
+      default: '我們的產品',
+    },
+    size: {
+      default: 3,
+    },
+  },
+  components: {
+    AddToCart,
+    Carousel,
+    Slide,
+    ProductCardModal,
+  },
+  firestore() {
+    return {
+      products: db.collection('products'),
+    };
+  },
+  methods: {
+    showDetails(product) {
+      this.$store.dispatch('setActiveProduct', product);
+      $('#productModal').modal('show');
+    },
+  },
+  created() {
+    console.log(this.products);
+  },
+  computed: {
+    getProducts() {
+      if (this.size > 0 && this.size < this.products.length) {
+        return this.products.slice(0, this.size);
+      }
+      return this.products;
+    },
+  },
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .products{
+        margin-top: 7rem;
+        background: #f2f2f2;
+        padding-bottom: 3rem;
+    }
 </style>

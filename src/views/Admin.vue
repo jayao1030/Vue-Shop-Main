@@ -29,11 +29,12 @@
               />
             </div>
             <div class="user-info">
-              <span class="user-name"
-                >Jhon
-                <strong>Smith</strong>
+              <span class="user-name">
+                <strong>{{ profile.name }}</strong>
               </span>
-              <span class="user-role"></span>
+               <span class="user-name" v-if="getUser.displayName">
+                @{{ getUser.displayName }}
+              </span>
               <span class="user-status">
                 <i class="fa fa-circle"></i>
                 <span>Online</span>
@@ -46,7 +47,12 @@
               <li class="header-menu">
                 <span>Menu</span>
               </li>
-
+              <li>
+                <router-link :to="{ name: 'Overview'}">
+                  <i class="fa fa-tachometer-alt"></i>
+                  <span>我的訂單</span>
+                </router-link>
+              </li>
                <li>
                 <router-link :to="{ name: 'UserProfile'}">
                   <i class="fa fa-user"></i>
@@ -66,7 +72,7 @@
                 </router-link>
               </li>
               <li>
-                <a href="#" @click="logout()">
+                <a href="#" @click="logout">
                   <i class="fa fa-power-off"></i>
                   <span>登出</span>
                 </a>
@@ -77,7 +83,7 @@
         </div>
       </nav>
       <!-- sidebar-content  -->
-      <main class="page-content">
+      <main class="page-content pr-2">
         <router-view />
       </main>
       <!-- page-content" -->
@@ -86,14 +92,34 @@
 </template>
 
 <script>
+import { db, auth } from '@/firebase/config';
 import $ from 'jquery';
 
 export default {
   name: 'Admin',
-
+  firestore() {
+    const user = auth.currentUser;
+    return {
+      profile: db.collection('profiles').doc(user.uid),
+    };
+  },
   methods: {
     closeMenu() {
       $('.page-wrapper').toggleClass('toggled');
+    },
+    logout() {
+      auth.signOut()
+        .then(() => {
+          this.$router.push({ name: 'Home' });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  computed: {
+    getUser() {
+      return auth.currentUser;
     },
   },
 };

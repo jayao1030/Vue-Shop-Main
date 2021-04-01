@@ -13,13 +13,15 @@
 import Navbar from '@/components/Navbar.vue';
 import Hero from '@/components/Hero.vue';
 import Footer from '@/components/Footer.vue';
-// import Login from '@/components/Login.vue';
 import ProductSlider from '@/sections/ProductSlider.vue';
 
 export default {
   name: 'Home',
   components: {
-    Hero, Navbar, ProductSlider, Footer,
+    Hero,
+    Navbar,
+    ProductSlider,
+    Footer,
   },
 };
 </script>

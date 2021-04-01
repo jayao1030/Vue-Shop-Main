@@ -1,5 +1,6 @@
 <template>
     <div class="login">
+      <Loading v-if="loading" />
       <div
         class="modal fade"
         id="login"
@@ -68,7 +69,7 @@
                       class="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
-                      placeholder="Enter email"
+                      placeholder="請輸入信箱"
                     />
                   </div>
                   <div class="form-group">
@@ -79,7 +80,7 @@
                       v-model="password"
                       class="form-control"
                       id="exampleInputPassword1"
-                      placeholder="Password"
+                      placeholder="請輸入密碼"
                     />
                   </div>
 
@@ -102,7 +103,7 @@
                       v-model="name"
                       class="form-control"
                       id="name"
-                      placeholder="Your nice name"
+                      placeholder="請輸入用戶名"
                     />
                   </div>
 
@@ -114,7 +115,7 @@
                       class="form-control"
                       id="email"
                       aria-describedby="emailHelp"
-                      placeholder="Enter email"
+                      placeholder="請輸入信箱"
                     />
                   </div>
                   <div class="form-group">
@@ -125,7 +126,7 @@
                       v-model="password"
                       class="form-control"
                       id="password"
-                      placeholder="Password"
+                      placeholder="請輸入密碼"
                     />
                   </div>
 
@@ -144,54 +145,108 @@
 </template>
 
 <script>
-import { auth } from '@/firebase/config';
+import { auth, db } from '@/firebase/config';
 import $ from 'jquery';
+import Loading from '@/components/Loading.vue';
 
 export default {
   name: 'Login',
+  components: {
+    Loading,
+  },
   data() {
     return {
       name: null,
       email: null,
       password: null,
+      loading: false,
     };
   },
   methods: {
     register() {
+      this.loading = true;
       auth
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => {
+        .then((user) => {
+          db.collection('profiles').doc(user.user.uid).set({
+            name: this.name,
+          })
+            .then(() => {
+              console.log('ok');
+              this.$router.push({ name: 'Admin' });
+              window.Toast.fire({
+                icon: 'success',
+                title: '註冊成功',
+              });
+              this.loading = false;
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           $('#login').modal('hide');
-          this.$router.push('admin');
         })
         .catch((err) => {
           // 錯誤處理
           const errorCode = err.code;
-          const errorMessage = err.message;
+          this.loading = false;
           if (errorCode === 'auth/weak-password') {
-            alert('需要至少6位數密碼');
+            window.Swal.fire({
+              title: '密碼強度不足',
+              text: '需要至少6位數密碼',
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '確定',
+            });
           } else {
-            alert(errorMessage);
+            window.Swal.fire({
+              title: '信箱格式錯誤',
+              text: '請填寫正確格式',
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '確定',
+            });
           }
           console.log(err);
         });
     },
     login() {
+      this.loading = true;
       auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          // console.log(auth);
+          console.log(auth);
           $('#login').modal('hide');
-          this.$router.push('admin');
+          this.$router.push({ name: 'UserProfile' });
+          window.Toast.fire({
+            icon: 'success',
+            title: '登入成功',
+          });
+          this.loading = false;
         })
         .catch((err) => {
           // 錯誤處理
           const errorCode = err.code;
-          const errorMessage = err.message;
+          this.loading = false;
           if (errorCode === 'auth/wrong-password') {
-            alert('密碼錯誤');
+            window.Swal.fire({
+              title: '密碼錯誤',
+              text: '請輸入正確密碼',
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '確定',
+            });
           } else {
-            alert(errorMessage);
+            window.Swal.fire({
+              title: '查無此信箱',
+              text: '請輸入正確電子信箱',
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '確定',
+            });
           }
           console.log(err);
         });

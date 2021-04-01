@@ -1,11 +1,13 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
+
+require('firebase/firestore');
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API,
   authDomain: 'shop-74e97.firebaseapp.com',
+  databaseURL: 'https://shop-74e97-default-rtdb.firebaseio.com',
   projectId: 'shop-74e97',
   storageBucket: 'shop-74e97.appspot.com',
   messagingSenderId: '427340251793',

@@ -1,10 +1,8 @@
 <template>
-  <div class="home">
+<div>
     <Navbar />
-    <div class="container">
       <Hero />
       <ProductSlider />
-    </div>
     <Footer />
   </div>
 </template>

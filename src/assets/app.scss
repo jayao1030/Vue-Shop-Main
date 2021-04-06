@@ -2,3 +2,13 @@
 @import "./helps/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "./assets/admin";
+
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(251, 255, 9);
+}
+
+.content {
+  margin-top: 3rem;
+}

@@ -1,7 +1,7 @@
 <template>
   <header>
-    <div class="navbar navbar-expand-lg bg-white border-bottom shadow-sm fixed-top">
-      <nav class="container d-flex flex-column flex-md-row align-items-center">
+    <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom shadow-sm fixed-top">
+      <div class="container-fluid d-flex flex-column flex-md-row align-items-center">
         <router-link class="navbar-brand" :to="{ name: 'Home' }">Vue Shop</router-link>
         <button class="navbar-toggler"
           type="button"
@@ -16,7 +16,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <router-link :to="{name: 'Home'}" class="nav-link" href="#">Home</router-link>
+            <router-link
+              :to="{name: 'Home'}"
+              class="nav-link"
+              href="#">
+                Home
+            </router-link>
           </li>
           <li class="nav-item">
             <router-link
@@ -66,15 +71,15 @@
                 登入
               </a>
           </li>
-          <li class="nav-item mr-5">
+          <li class="nav-item mr-5 mt-1">
             <div class="container"><Cart /></div>
           </li>
         </ul>
       </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
         <Login />
-        <CarButton />
+        <CartButton />
   </header>
 </template>
 
@@ -82,12 +87,12 @@
 import { auth } from '@/firebase/config';
 import Login from './Login.vue';
 import Cart from './Cart.vue';
-import CarButton from './CartButton.vue';
+import CartButton from './CartButton.vue';
 
 export default {
   name: 'Navbar',
   components: {
-    Login, Cart, CarButton,
+    Login, Cart, CartButton,
   },
   data() {
     return {

@@ -4,26 +4,40 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-const cart = window.localStorage.getItem('cart');
-
-const saveData = () => {
-  window.localStorage.setItem('cart', JSON.stringify(this.state.cart));
+const updateLocalStorage = (cart) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
 };
 
 export default new Vuex.Store({
   state: {
-    cart: cart ? JSON.parse(cart) : [],
-    activeProduct: null,
+    cart: [],
+    activeProduct: {},
+  },
+  getters: {
+    getActiveProduct(state) {
+      return state.activeProduct;
+    },
+    getCart(state) {
+      return state.cart;
+    },
+    totalPrice(state) {
+      let result = 0;
+      state.cart.forEach((product) => {
+        result += product.price * product.quantity;
+      });
+      return result;
+    },
   },
   mutations: {
     ADD_TO_CART(state, product) {
       const item = state.cart.find((i) => i.id === product.id);
+      console.log(product.id);
       if (item) {
         item.quantity += 1;
       } else {
         state.cart.push({ ...product, quantity: 1 });
       }
-      saveData();
+      updateLocalStorage(state.cart);
     },
     SET_ACTIVE_PRODUCT(state, product) {
       state.activeProduct = product;
@@ -38,7 +52,7 @@ export default new Vuex.Store({
           state.cart = state.cart.filter((i) => i.id !== product.id);
         }
       }
-      saveData();
+      updateLocalStorage(state.cart);
     },
 
     DECREASE_PRODUCT(state, product) {
@@ -50,18 +64,26 @@ export default new Vuex.Store({
         }
         return prod;
       });
+
       if (p) {
         if (p.quantity < 1) {
           const idx = state.cart.indexOf(p);
           state.cart.splice(idx, 1);
         }
       }
-      saveData();
+
+      updateLocalStorage(state.cart);
     },
 
     SET_CART_EMPTY(state) {
       state.cart = [];
-      saveData();
+      updateLocalStorage(state.cart);
+    },
+    UPDATE_CART_FROM_LOCALSTORAGE(state) {
+      const cart = localStorage.getItem('cart');
+      if (cart) {
+        state.cart = JSON.parse(cart);
+      }
     },
   },
   actions: {
@@ -81,19 +103,5 @@ export default new Vuex.Store({
       commit('SET_CART_EMPTY');
     },
   },
-  getters: {
-    getActiveProduct(state) {
-      return state.activeProduct;
-    },
-    getCart(state) {
-      return state.cart;
-    },
-    totalPrice(state) {
-      let result = 0;
-      state.cart.forEach((product) => {
-        result += product.price * product.quantity;
-      });
-      return result;
-    },
-  },
+
 });

@@ -104,6 +104,7 @@
                       class="form-control"
                       id="name"
                       placeholder="請輸入用戶名"
+                      required
                     />
                   </div>
 
@@ -116,6 +117,7 @@
                       id="email"
                       aria-describedby="emailHelp"
                       placeholder="請輸入信箱"
+                      required
                     />
                   </div>
                   <div class="form-group">
@@ -127,6 +129,7 @@
                       class="form-control"
                       id="password"
                       placeholder="請輸入密碼"
+                      required
                     />
                   </div>
 
@@ -193,6 +196,16 @@ export default {
             window.Swal.fire({
               title: '密碼強度不足',
               text: '需要至少6位數密碼',
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '確定',
+            });
+          }
+          if (errorCode === 'auth/email-already-in-use') {
+            window.Swal.fire({
+              title: '信箱已註冊',
+              text: '請填入未註冊過的信箱',
               icon: 'warning',
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',

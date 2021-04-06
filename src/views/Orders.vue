@@ -10,12 +10,44 @@
         </div>
 
         <div class="row h-100 justify-content-center align-items-center mt-3">
+          <div class="col-md-4">
+            <div class="card text-white bg-info mb-1 info-card">
+              <div class="card-header">
+                <h4 class="card-title">總訂單數</h4>
+              </div>
+              <div class="card-body" style="text-align: center">
+                <h2 class="font-weight-bold">{{ orders.length }}</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card bg-light mb-1 info-card">
+              <div class="card-header">
+                <h4 class="card-title">待付款訂單</h4>
+              </div>
+              <div class="card-body" style="text-align: center">
+                <h2 class="font-weight-bold">{{ ordersPending.length }}</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-white bg-success mb-1 info-card">
+              <div class="card-header">
+                <h4 class="card-title">已完成訂單</h4>
+              </div>
+              <div class="card-body" style="text-align: center">
+                <h2 class="font-weight-bold">{{ ordersDelivered.length }}</h2>
+              </div>
+            </div>
+          </div>
           <table class="table table-hover table-white mt-5">
             <thead>
               <tr>
                 <th scope="col">姓名</th>
                 <th scope="col">地址</th>
-                <th scope="col">狀態</th>
+                <th scope="col">訂單狀態</th>
               </tr>
             </thead>
             <tbody>
@@ -29,17 +61,17 @@
                 <td>{{ order.user.address }}</td>
                 <td>
                   <span
-                    v-if="order.status === 'pending'"
+                    v-if="order.status === '等待付款'"
                     class="badge badge-pill badge-primary"
                     >{{ order.status }}</span
                   >
                   <span
-                    v-if="order.status === 'delivered'"
+                    v-if="order.status === '完成訂單'"
                     class="badge badge-pill badge-success"
                     >{{ order.status }}</span
                   >
                   <span
-                    v-if="order.status === 'in-delivery'"
+                    v-if="order.status === '商品已出貨'"
                     class="badge badge-pill badge-info"
                     >{{ order.status }}</span
                   >
@@ -61,9 +93,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">
-                  訂單明細
-                </h6>
+                <h6 class="modal-title" id="exampleModalLabel">訂單明細</h6>
                 <button
                   type="button"
                   class="close"
@@ -79,8 +109,7 @@
                 <h6 class="text-bold">{{ activeOrder.user.name }}</h6>
                 <span>電話號碼: {{ activeOrder.user.phone }}</span>
                 <p>
-                  <span class="text-info">{{ activeOrder.user.address }}</span
-                  >
+                  <span class="text-info">{{ activeOrder.user.address }}</span>
                 </p>
 
                 <hr class="col-xs-12 mt-3" />
@@ -91,25 +120,25 @@
                     <input
                       type="radio"
                       id="one"
-                      value="delivered"
+                      value="完成訂單"
                       v-model="status"
                       class="mr-2"
                     />
-                    <label for="one">已付款</label>
+                    <label for="one">完成訂單</label>
                     <br />
                     <input
                       type="radio"
                       id="two"
-                      value="in-delivery"
+                      value="商品已出貨"
                       v-model="status"
                       class="mr-2"
                     />
-                    <label for="two">商品運送中</label>
+                    <label for="two">商品已出貨</label>
                     <br />
                     <input
                       type="radio"
                       id="two"
-                      value="pending"
+                      value="等待付款"
                       v-model="status"
                       class="mr-2"
                     />
@@ -154,7 +183,8 @@ import Loading from '../components/Loading.vue';
 export default {
   name: 'Orders',
   components: {
-    ProductCard, Loading,
+    ProductCard,
+    Loading,
   },
   data() {
     return {
@@ -205,7 +235,7 @@ export default {
 
           window.Toast.fire({
             icon: 'success',
-            title: 'Order status was updated successfully!',
+            title: '訂單更新成功!',
           });
         })
         .catch((err) => {
@@ -260,16 +290,15 @@ export default {
     },
 
     ordersPending() {
-      return this.orders.filter((order) => order.status === 'pending');
+      return this.orders.filter((order) => order.status === '等待付款');
     },
 
     ordersDelivered() {
-      return this.orders.filter((order) => order.status === 'delivered');
+      return this.orders.filter((order) => order.status === '完成訂單');
     },
   },
 };
 </script>
 
 <style>
-
 </style>

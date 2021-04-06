@@ -1,12 +1,12 @@
 <template>
   <div class="products">
     <Loading v-if="loading" />
-    <div class="container h-100">
-      <div class="intro h-100">
+    <div class="container">
+      <div class="intro">
           <div class="col-md-12">
             <h3>商品管理</h3>
         </div>
-        <div class="row h-100 justify-content-center align-item-center">
+        <div class="row justify-content-center align-items-center">
           <div class="table-responsive">
             <button
               @click="addNew"
@@ -17,20 +17,16 @@
             <table class="table table-hover table-white mt-5">
               <thead>
                 <tr>
+                  <th scope="col">分類</th>
                   <th scope="col">商品名</th>
-                  <th scope="col">價錢</th>
-                  <th scope="col">操作</th>
+                  <th scope="col">售價</th>
+                  <th scope="col">編輯</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="prod in products" :key="prod.id">
-                  <th
-                    scope="row"
-                    @click="editProduct(prod)"
-                    style="cursor: pointer"
-                  >
-                    {{ prod.name }}
-                  </th>
+                  <td>{{ prod.category }}</td>
+                  <td>{{ prod.name }}</td>
                   <td>${{ prod.price }}</td>
                   <td>
                     <i
@@ -74,32 +70,39 @@
             </div>
             <div class="modal-body">
               <div class="row w-100">
-                <div class="col-md-7">
+                <div class="form-group col-md-7">
+                  <label for="category">分類</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="category"
+                    v-model="product.category"
+                    placeholder="請輸入分類">
+                </div>
+                <div class="form-group col-md-7">
                   <label for="name">商品名</label>
                   <input
                     type="text"
                     v-model="product.name"
                     class="form-control"
                     id="name"
-                    placeholder="Product name"
+                    placeholder="請輸入商品名"
                   />
-                  <div class="form-group">
+                  <div class="form-group mt-3">
                     <label for="name">商品介紹</label>
                     <vue-editor v-model="product.description"></vue-editor>
                   </div>
                 </div>
                 <div class="col-md-5">
-                  <h5>商品細節</h5>
-                  <hr />
                   <label for="price">商品價格</label>
                   <input
                     type="text"
                     v-model="product.price"
                     class="form-control"
                     id="price"
-                    placeholder="Price"
+                    placeholder="請輸入金額"
                   />
-                  <div class="input-group">
+                  <div class="input-group mt-5">
                     <div class="custom-file">
                       <input
                         @change="uploadImage"
@@ -120,7 +123,7 @@
                       :key="index"
                     >
                       <div class="img-wrapp">
-                        <img :src="image" alt="" width="80px" />
+                        <img :src="image" alt="image" width="100" />
                         <span
                           class="delete-img"
                           @click="deleteImage(image, index)"
@@ -179,6 +182,7 @@ export default {
   data() {
     return {
       product: {
+        category: null,
         name: null,
         description: null,
         price: null,

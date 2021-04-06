@@ -2,11 +2,12 @@ import Vue from 'vue';
 import { $, jQuery } from 'jquery';
 import VueFirestore from 'vue-firestore';
 import Swal from 'sweetalert2';
+import store from './store';
 import { auth } from './firebase/config';
 import App from './App.vue';
 import router from './router';
 import 'bootstrap';
-import store from './store';
+import 'popper.js';
 
 require('firebase/firestore');
 

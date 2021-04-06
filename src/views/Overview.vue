@@ -9,7 +9,6 @@
           </div>
         </div>
       </div>
-      <hr class="col-xs-12 mt-5" />
 
       <table class="table table-hover table-white mt-5">
         <thead>
@@ -17,7 +16,7 @@
             <th scope="col">姓名</th>
             <th scope="col">地址</th>
             <th scope="col">總共金額</th>
-            <th scope="col">狀態</th>
+            <th scope="col">訂單狀態</th>
           </tr>
         </thead>
         <tbody>
@@ -32,19 +31,19 @@
             <td>${{ totalPrice(order) }}</td>
             <td>
               <span
-                v-if="order.status === 'pending'"
+                v-if="order.status === '等待付款'"
                 class="badge badge-pill badge-primary"
-                >{{ order.status }}</span
+                >{{order.status}}</span
               >
               <span
-                v-if="order.status === 'delivered'"
+                v-if="order.status === '完成訂單'"
                 class="badge badge-pill badge-success"
-                >{{ order.status }}</span
+                >{{order.status}}</span
               >
               <span
-                v-if="order.status === 'in-delivery'"
+                v-if="order.status === '商品已出貨'"
                 class="badge badge-pill badge-info"
-                >{{ order.status }}</span
+                >{{order.status}}</span
               >
             </td>
           </tr>
@@ -76,7 +75,7 @@
               <ProductCard :products="activeOrder.order" />
               <hr class="col-xs-12 mt-3" />
               <h6 class="text-bold">{{ activeOrder.user.name }}</h6>
-              <span>Phone: {{ activeOrder.user.phone }}</span>
+              <span>電話: {{ activeOrder.user.phone }}</span>
               <p>
                 <span class="text-info">{{ activeOrder.user.address }}</span>
               </p>

@@ -72,6 +72,12 @@ const routes = [
     name: 'ProductsList',
     component: () => import('../views/ProductsList.vue'),
   },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: () => import('../views/Payment.vue'),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = new VueRouter({

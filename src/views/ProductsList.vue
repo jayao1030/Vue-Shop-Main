@@ -3,9 +3,6 @@
     <Navbar />
     <div class="container mt-5">
       <div class="row w-100 h-60">
-        <div class="col-md-7 mt-5">
-          <h3>我們的產品</h3>
-        </div>
       </div>
     </div>
     <div class="h-100">

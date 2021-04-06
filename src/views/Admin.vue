@@ -22,6 +22,13 @@
           <div class="sidebar-item sidebar-header d-flex flex-nowrap">
             <div class="user-pic">
               <img
+                v-if="getUser.photoURL"
+                :src="getUser.photoURL"
+                style="border-radius: 50%"
+                alt="userPhoto"
+                width="100px">
+              <img
+                v-else
                 class="img-responsive img-rounded"
                 src="/img/svg/user-regular.svg"
                 alt="User picture"

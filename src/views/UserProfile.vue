@@ -1,19 +1,12 @@
 <template>
   <div class="products">
+      <Loading v-if="loading"/>
     <div class="container">
       <div class="intro h-100">
         <div class="row h-100 align-items-center">
           <div class="col-md-6 ml-3">
             <h3>用戶設定</h3>
             <p>更改您的用戶資料</p>
-          </div>
-          <div class="col-md-5">
-            <img
-              src="/img/svg/user-regular.svg"
-              width="100"
-              alt=""
-              class="img-fluid"
-            />
           </div>
         </div>
       </div>
@@ -176,9 +169,13 @@
 
 <script>
 import { fb, db, auth } from '@/firebase/config';
+import Loading from '@/components/Loading.vue';
 
 export default {
   name: 'UserProfile',
+  components: {
+    Loading,
+  },
   data() {
     return {
       profile: {
@@ -191,9 +188,9 @@ export default {
         email: null,
         photoURL: null,
       },
+      loading: null,
     };
   },
-  components: {},
   firestore() {
     const user = auth.currentUser;
     return {
@@ -212,7 +209,7 @@ export default {
           this.loading = false;
           window.Toast.fire({
             icon: 'success',
-            title: 'Your account was updated successfully!',
+            title: '更新成功!',
           });
         })
         .catch((err) => {
@@ -238,7 +235,7 @@ export default {
         .then(() => {
           window.Toast.fire({
             icon: 'success',
-            title: 'Your profile was updated successfully!',
+            title: '更新成功!',
           });
         })
         .catch((err) => console.log(err));
@@ -252,6 +249,7 @@ export default {
       const storageRef = fb
         .storage()
         .ref(`profileImg/${Math.random()}_${file.name}`);
+      this.loading = true;
       const uploadTask = storageRef.put(file);
 
       uploadTask.on(
@@ -264,6 +262,7 @@ export default {
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            this.loading = false;
             this.account.photoURL = downloadURL;
           });
         },

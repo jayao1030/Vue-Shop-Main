@@ -1,7 +1,7 @@
 <template>
   <main role="main">
     <div class="album py-5 bg-light">
-      <ProductCardModal />
+    <ProductCardModal />
       <div class="container">
         <h1 class="text-center p-5">{{ value }}</h1>
         <div class="row">

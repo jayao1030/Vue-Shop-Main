@@ -45,7 +45,7 @@
                     ${{ product.price }}
                   </h6>
                   <p class="card-text">
-                    Quantity:
+                    數量:
                     <span
                       style="cursor: pointer"
                       class="add-item"
@@ -84,7 +84,7 @@
           <h4>交易資訊</h4>
           <p class="text-secondary">檢查您的交易資訊</p>
 
-          <form @submit="updateProfile">
+          <form @submit.prevent="updateProfile">
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label for="validationDefault01">姓名</label>
@@ -138,13 +138,12 @@
                   required
                 />
                 <label class="form-check-label" for="invalidCheck2">
-                  請勾選同意條款和條件
+                  請勾選同意條款
                 </label>
               </div>
             </div>
             <hr class="col-xs-12 mt-2" />
             <h6 class="text-info mt-3">總共金額: ${{ totalPrice }}</h6>
-            <p class="text-secondary">請確認您的地址是正確的</p>
             <input
               class="btn btn-primary"
               type="submit"
@@ -174,10 +173,15 @@ import Footer from '../components/Footer.vue';
 
 export default {
   name: 'Checkout',
+  components: {
+    Footer,
+    ProductCardModal,
+    Navbar,
+  },
   data() {
     return {
       user: null,
-      loading: null,
+      loading: false,
       agree: null,
     };
   },
@@ -186,11 +190,6 @@ export default {
     return {
       profile: db.collection('profiles').doc(user.uid),
     };
-  },
-  components: {
-    Footer,
-    ProductCardModal,
-    Navbar,
   },
   methods: {
     ...mapActions(['deleteProduct', 'addProduct', 'decreaseProduct']),

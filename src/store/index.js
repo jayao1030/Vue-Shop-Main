@@ -44,14 +44,8 @@ export default new Vuex.Store({
     },
 
     DELETE_PRODUCT(state, product) {
-      const item = state.cart.find((i) => i.id === product.id);
-      if (item) {
-        if (item.quantity > 1) {
-          item.quantity -= 1;
-        } else {
-          state.cart = state.cart.filter((i) => i.id !== product.id);
-        }
-      }
+      const itemIndex = state.cart.indexOf(product);
+      state.cart.splice(itemIndex, 1);
       updateLocalStorage(state.cart);
     },
 

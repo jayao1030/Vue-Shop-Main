@@ -2,11 +2,8 @@
   <div class="products-list">
     <Navbar />
     <div class="container mt-5">
-      <div class="row w-100 h-60">
-      </div>
-    </div>
-    <div class="h-100">
-      <ProductsSlider value="我們的產品" size="10" />
+      <AllProducts />
+      <!-- <ProductSlider/> -->
     </div>
     <Footer />
   </div>
@@ -14,7 +11,8 @@
 
 <script>
 import Navbar from '../components/Navbar.vue';
-import ProductsSlider from '../sections/ProductSlider.vue';
+import AllProducts from './AllProducts.vue';
+// import ProductSlider from '../sections/ProductSlider.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -22,7 +20,8 @@ export default {
   components: {
     Footer,
     Navbar,
-    ProductsSlider,
+    AllProducts,
+    // ProductSlider,
   },
 };
 </script>

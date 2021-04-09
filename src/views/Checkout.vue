@@ -1,14 +1,14 @@
 <template>
   <div class="checkout">
     <Navbar />
-    <div class="container mt-5">
+    <div class="container content">
       <ProductCardModal />
       <div class="row">
-        <div class="col-md-6">
-          <h4>結帳頁面</h4>
+        <div class="col-md-6 mt-3">
+          <h4>購買清單</h4>
           <h5 class="mb-4 text-secondary">總共金額: ${{ totalPrice }}</h5>
 
-          <div v-if="getCart.length == 0">您的購物車是空的</div>
+          <div v-if="getCart.length === 0">您的購物車是空的</div>
           <div
             class="card mt-2 customCard"
             style="width: 40vw"
@@ -99,12 +99,6 @@
               </div>
               <div class="col-md-4 mb-3">
                 <label for="validationDefaultUsername">手機號碼</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend2"
-                      ></span
-                    >
-                  </div>
                   <input
                     type="text"
                     class="form-control"
@@ -113,7 +107,6 @@
                     aria-describedby="inputGroupPrepend2"
                     required
                   />
-                </div>
               </div>
             </div>
             <div class="form-row">
@@ -126,20 +119,6 @@
                   id="validationDefault03"
                   required
                 />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  v-model="agree"
-                  id="invalidCheck2"
-                  required
-                />
-                <label class="form-check-label" for="invalidCheck2">
-                  請勾選同意條款
-                </label>
               </div>
             </div>
             <hr class="col-xs-12 mt-2" />
@@ -233,4 +212,5 @@ export default {
 .customCard:hover {
   transform: scale(1.03);
 }
+
 </style>

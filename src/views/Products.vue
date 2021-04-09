@@ -258,7 +258,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: '刪除成功!',
+        confirmButtonText: '刪除',
       }).then((result) => {
         if (result.value) {
           this.loading = true;

@@ -1,6 +1,6 @@
 <template>
   <div v-if="!buttonLarge" class="d-flex">
-    <button v-if="isAlreadyAdded()" class="btn btn-success btn-sm">
+    <button v-if="isAlreadyAdded()" class="btn btn-secondary btn-sm">
       <i class="fa fa-check" aria-hidden="true"></i> 已加入購物車
     </button>
     <button v-else class="btn btn-primary btn-sm" @click="addToCart()">
@@ -10,7 +10,7 @@
   <div v-else>
     <button
       v-if="isAlreadyAdded()"
-      class="btn btn-success px-5"
+      class="btn btn-secondary px-5"
       style="height: 100%"
     >
       <i class="fa fa-check" aria-hidden="true"></i> 已加入購物車

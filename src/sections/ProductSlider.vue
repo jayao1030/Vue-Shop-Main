@@ -1,7 +1,6 @@
 <template>
   <main role="main">
-    <div class="album py-5 bg-light">
-    <ProductCardModal />
+    <div class="py-5 bg">
       <div class="container">
         <h1 class="text-center p-5">{{ value }}</h1>
         <div class="row">
@@ -11,7 +10,8 @@
             :key="product.id"
           >
             <div class="card product-item">
-              <carousel :perPage="1">
+              <carousel :perPage="1"
+              :paginationEnabled="false">
                 <slide v-for="(image, index) in product.images" :key="index">
                   <img
                     :src="image"
@@ -33,6 +33,7 @@
                   <h5 class="card-priceS">$ {{ product.price }}</h5>
                 </div>
                 <AddToCart :ProductId="product.id" value="加到購物車" />
+                <ProductCardModal />
               </div>
             </div>
           </div>
@@ -57,7 +58,7 @@ export default {
       default: '我們的產品',
     },
     size: {
-      default: 3,
+      default: 5,
     },
   },
   components: {
@@ -65,6 +66,11 @@ export default {
     Carousel,
     Slide,
     ProductCardModal,
+  },
+  data() {
+    return {
+      searchText: '',
+    };
   },
   firestore() {
     return {
@@ -92,6 +98,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// .bg {
+//   background-image: url("/img/svg/bg-1.svg");
+
+// }
   .products{
         margin-top: 7rem;
         background: #f2f2f2;

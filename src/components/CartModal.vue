@@ -68,15 +68,23 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <p>總共金額: ${{ totalPrice }}</p>
-            <button
-              @click="goToCheckout"
-              type="button"
-              class="btn btn-outline-info"
-            >
-              結帳
-            </button>
+          <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="setCartEmpty()"
+              >
+                清空購物車
+              </button>
+
+              <h6>總共金額: ${{ totalPrice }}</h6>
+              <button
+                @click="goToCheckout"
+                type="button"
+                class="btn btn-primary"
+              >
+                結帳
+              </button>
           </div>
         </div>
       </div>
@@ -90,14 +98,19 @@ import { mapGetters, mapActions } from 'vuex';
 import { auth } from '../firebase/config';
 
 export default {
-  name: 'CartButton',
+  name: 'CartModal',
   data() {
     return {
       user: null,
     };
   },
   methods: {
-    ...mapActions(['deleteProduct', 'addProduct', 'decreaseProduct']),
+    ...mapActions([
+      'deleteProduct',
+      'addProduct',
+      'decreaseProduct',
+      'setCartEmpty',
+    ]),
     showCart() {
       $('#cartModal').modal('show');
     },

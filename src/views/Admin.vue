@@ -13,7 +13,7 @@
         <div class="sidebar-content">
           <!-- sidebar-brand  -->
           <div class="sidebar-item sidebar-brand">
-            <router-link :to="{ name : 'Home'}">Vue shop</router-link>
+            <router-link :to="{ name : 'Home'}"><i class="fas fa-home"></i></router-link>
             <div id="close-sidebar" @click="closeMenu">
               <i class="fas fa-times"></i>
             </div>

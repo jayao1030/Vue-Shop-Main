@@ -11,8 +11,7 @@
 
 <script>
 import Navbar from '../components/Navbar.vue';
-import AllProducts from './AllProducts.vue';
-// import ProductSlider from '../sections/ProductSlider.vue';
+import AllProducts from '../sections/AllProducts.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -21,10 +20,12 @@ export default {
     Footer,
     Navbar,
     AllProducts,
-    // ProductSlider,
   },
 };
 </script>
 
 <style scoped>
+.products-list {
+  margin-top: 5rem;
+}
 </style>

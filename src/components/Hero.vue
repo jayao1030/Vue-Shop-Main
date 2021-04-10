@@ -1,34 +1,56 @@
 <template>
   <div class="hero container content">
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/img/products/banner-00.jpg" class="d-block image-fluid" alt="image">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="/img/banner00.jpg"
+            class="d-block image-fluid"
+            alt="image"
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h1>嬰兒童裝</h1>
+            <p>Some representative placeholder content for the first slide.</p>
+            <router-link
+              class="btn btn-lg btn-warning"
+              :to="{ name: 'ProductsList' }"
+              role="button"
+              >前往選購</router-link
+            >
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/banner01.jpg" class="d-block image-fluid" alt="image" />
+          <div class="carousel-caption d-none d-md-block">
+            <h1>幼兒童裝</h1>
+            <p>Some representative placeholder content for the second slide.</p>
+            <router-link
+              class="btn btn-lg btn-warning"
+              :to="{ name: 'ProductsList' }"
+              role="button"
+              >前往選購</router-link
+            >
+          </div>
+        </div>
+      <div class="carousel-item">
+        <img src="img/banner02.jpg" class="d-block image-fluid" alt="image" />
+        <div class="carousel-caption d-none d-md-block">
+          <h1>派對童裝</h1>
+          <p>Some representative placeholder content for the third slide.</p>
+          <router-link
+            class="btn btn-lg btn-warning"
+            :to="{ name: 'ProductsList' }"
+            role="button"
+            >前往選購</router-link
+          >
+        </div>
       </div>
-    </div>
-    <div class="carousel-item">
-      <img src="img/products/banner-01.jpg" class="d-block image-fluid" alt="image">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="img/products/banner-02.jpg" class="d-block image-fluid" alt="image">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-  </div>
+      <div>
         <a
           class="carousel-control-prev"
           href="#myCarousel"
@@ -48,6 +70,8 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -56,90 +80,17 @@ export default {};
 </script>
 
 <style scoped>
-/* GLOBAL STYLES
--------------------------------------------------- */
-/* Padding below the footer and lighter body text */
-
-body {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  color: #05a7c3;
-}
-
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-
-/* Carousel base class */
-.carousel {
-  margin-bottom: 4rem;
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  bottom: 3rem;
-  z-index: 10;
-}
-
-/* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 36rem;
+  width: 100%;
+  height: 760px;
 }
-.carousel-item > img {
+.carousel-item img {
   position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: 36rem;
-}
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: 400;
-}
-.marketing .col-lg-4 p {
-  margin-right: 0.75rem;
-  margin-left: 0.75rem;
-}
-
-/* Featurettes
-------------------------- */
-
-.featurette-divider {
-  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.05rem;
-}
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (min-width: 40em) {
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
-  }
-
-  .featurette-heading {
-    font-size: 50px;
-  }
-}
-
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem;
-  }
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  height: 100%;
 }
 </style>

@@ -73,11 +73,11 @@
             </div>
             <div class="modal-body">
               <ProductCard :products="activeOrder.order" />
-              <hr class="col-xs-12 mt-3" />
-              <h6 class="text-bold">{{ activeOrder.user.name }}</h6>
+              <hr class="col-xs-10 mt-3" />
+              <h6 class="text-bold">姓名: {{ activeOrder.user.name }}</h6>
               <span>電話: {{ activeOrder.user.phone }}</span>
               <p>
-                <span class="text-info">{{ activeOrder.user.address }}</span>
+                <span>地址: {{ activeOrder.user.address }}</span>
               </p>
               <h5 class="text-info">
                 總共金額: ${{ totalActiveOrderPrice }}
@@ -85,7 +85,7 @@
               <h6 class="text-secondary">
                 訂單狀態:
                 <span class="badge badge-pill badge-info">{{
-                  activeOrder.status
+                  activeOrder.status='等待付款'
                 }}</span>
               </h6>
             </div>
@@ -145,7 +145,7 @@ export default {
 
     openOrder(order) {
       this.activeOrder = order;
-      console.log(this.activeOrder);
+      // console.log(this.activeOrder);
       $('#myOrderModal').modal('show');
     },
   },

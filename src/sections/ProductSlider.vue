@@ -1,6 +1,5 @@
 <template>
   <main role="main">
-    <div class="py-5 bg">
       <div class="container">
         <h1 class="text-center p-5">{{ value }}</h1>
         <div class="row">
@@ -39,7 +38,6 @@
           </div>
         </div>
       </div>
-    </div>
   </main>
 </template>
 
@@ -55,10 +53,10 @@ export default {
   props: {
     value: {
       type: String,
-      default: '我們的產品',
+      default: '最新商品',
     },
     size: {
-      default: 5,
+      default: 3,
     },
   },
   components: {

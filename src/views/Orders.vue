@@ -11,7 +11,7 @@
 
         <div class="row h-100 justify-content-center align-items-center mt-3">
           <div class="col-md-4">
-            <div class="card text-white bg-info mb-1 info-card">
+            <div class="card text-white bg-dark mb-1 info-card">
               <div class="card-header">
                 <h4 class="card-title">總訂單數</h4>
               </div>
@@ -33,7 +33,7 @@
           </div>
 
           <div class="col-md-4">
-            <div class="card text-white bg-success mb-1 info-card">
+            <div class="card text-white bg-warning mb-1 info-card">
               <div class="card-header">
                 <h4 class="card-title">已完成訂單</h4>
               </div>
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-          <table class="table table-hover table-white mt-5">
+          <table class="table table-hover table-light mt-5">
             <thead>
               <tr>
                 <th scope="col">姓名</th>

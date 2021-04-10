@@ -279,4 +279,7 @@ export default {
 </script>
 
 <style>
+.nav-pills .nav-link.active {
+  border-radius: 0;
+  }
 </style>

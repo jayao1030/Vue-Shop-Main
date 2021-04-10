@@ -1,5 +1,5 @@
 <template>
-  <div class="overview">
+  <div class="overview content">
     <Navbar />
     <Loading v-if="loading" />
     <div class="container h-100 mt-5">
@@ -8,7 +8,7 @@
           <div class="col-md-6">
             <h3>訂單確認</h3>
             <p class="text-info">
-                已經收到您的訂單,將盡快幫您送貨
+                已經收到您的訂單，將盡快幫您出貨!
             </p>
             <h6 class="text-info">總共金額: ${{ totalPrice }}</h6>
           </div>

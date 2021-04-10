@@ -8,6 +8,7 @@
         role="dialog"
         aria-labelledby="loginTitle"
         aria-hidden="true"
+        data-backdrop="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -85,7 +86,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-info" @click="login">登入</button>
+                    <button class="btn btn-info w-100" @click="login">登入</button>
                   </div>
                 </div>
                 <div
@@ -134,7 +135,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-info" @click="register">
+                    <button class="btn btn-info w-100"  @click="register">
                       註冊
                     </button>
                   </div>
@@ -268,5 +269,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.nav-pills .nav-link.active {
+  border-radius: 0;
+}
 </style>

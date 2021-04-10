@@ -15,7 +15,7 @@ export default {
   name: 'Cart',
   methods: {
     showCart() {
-      $('#cartModal').modal('show');
+      $('#cartDropdown').dropdown('show');
     },
   },
   computed: {

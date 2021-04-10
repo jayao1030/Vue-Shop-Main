@@ -10,6 +10,7 @@
 
 }
 body {
+  font-family: 'Noto Sans TC', sans-serif;
   background-color: #f5fcff;
 }
 ul {
@@ -23,6 +24,15 @@ a {
     color: #333;
   }
 }
+.btn-primary {
+  background-color: black;
+  border: none;
+  border-radius: 0;
+}
+.btn {
+  border-radius: 0;
+}
+
 
 .content {
   margin-top: 8rem;

@@ -86,7 +86,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-info w-100" @click="login">登入</button>
+                    <button class="btn btn-primary w-100" @click="login">登入</button>
                   </div>
                 </div>
                 <div
@@ -135,7 +135,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-info w-100"  @click="register">
+                    <button class="btn btn-primary w-100"  @click="register">
                       註冊
                     </button>
                   </div>

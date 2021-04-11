@@ -4,10 +4,8 @@
     <div class="container content">
       <ProductCardModal />
       <div class="row">
-        <div class="col-md-6 mt-3">
-          <h4>購買清單</h4>
-          <h5 class="mb-4 text-secondary">總共金額: ${{ totalPrice }}</h5>
-
+        <div class="col-md-6 mt-3 ">
+          <h4 class="mb-5">購買清單</h4>
           <div v-if="getCart.length === 0">您的購物車是空的</div>
           <div
             class="card mt-2 customCard"
@@ -24,25 +22,23 @@
               >
                 <span aria-hidden="true">&times;</span>
               </button>
-              <div class="row">
-                <div class="col-md-3">
+              <div class="row col"  @click="showDetails(product)">
+                <div class="col-md-5">
                   <img
                     :src="product.images[0]"
                     alt=""
                     width="100px"
-                    @click="showDetails(product)"
                   />
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-7 ">
                   <h5
                     class="card-title"
-                    @click="showDetails(product)"
                     style="cursor: pointer"
                   >
                     {{ product.name }}
                   </h5>
                   <h6 class="card-subtitle mb-2 text-muted">
-                    ${{ product.price }}
+                    $ {{ product.price }}
                   </h6>
                   <p class="card-text">
                     數量:
@@ -65,11 +61,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 mt-5">
-        </div>
-      </div>
-      <hr class="col-xs-12 mt-3" />
-      <div class="row mt-2" v-if="getCart.length">
+        <div class="col-md-6 mt-3">
+           <div class="row mt-2" v-if="getCart.length">
         <h6 class="text-secondary" v-if="!user">
           要完成購物，您必須先
           <a
@@ -82,11 +75,10 @@
         </h6>
         <div v-if="user" class="w-100">
           <h4>交易資訊</h4>
-          <p class="text-secondary">檢查您的交易資訊</p>
+          <p class="text-secondary">填寫您的交易資訊</p>
 
           <form @submit.prevent="updateProfile">
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
+              <div class="w-100 mb-3">
                 <label for="validationDefault01">姓名</label>
                 <input
                   type="text"
@@ -97,7 +89,7 @@
                   required
                 />
               </div>
-              <div class="col-md-4 mb-3">
+                <div class="w-100 mb-3">
                 <label for="validationDefaultUsername">手機號碼</label>
                   <input
                     type="text"
@@ -107,10 +99,8 @@
                     aria-describedby="inputGroupPrepend2"
                     required
                   />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-5 mb-3">
+                </div>
+              <div class="w-100 mb-3">
                 <label for="validationDefault03">地址</label>
                 <input
                   type="text"
@@ -120,22 +110,24 @@
                   required
                 />
               </div>
-            </div>
-            <hr class="col-xs-12 mt-2" />
-            <h6 class="text-info mt-3">總共金額: ${{ totalPrice }}</h6>
+            <hr class="col-xs-12 mt-3" />
+            <h6 class="text-danger mt-3 mb-5">金額合計 : NT$ {{ totalPrice }}</h6>
             <input
               class="btn btn-primary"
               type="submit"
-              value="前往付款"
+              value="確認訂單"
             />
             <router-link
               class="btn btn-outline-info ml-2"
               :to="{ name: 'ProductsList' }"
               >繼續購物</router-link
             >
-            <hr class="col-xs-12 mt-5" />
+
           </form>
         </div>
+        </div>
+      </div>
+      <hr class="col-xs-12 mt-3" />
       </div>
     </div>
     <Footer />
@@ -161,7 +153,6 @@ export default {
     return {
       user: null,
       loading: false,
-      agree: null,
     };
   },
   firestore() {
@@ -187,7 +178,7 @@ export default {
           this.loading = false;
           window.Toast.fire({
             icon: 'success',
-            title: 'Your delivery address was saved!',
+            title: '訂單建立成功!',
           });
           this.$router.push({ name: 'Payment' });
         })
@@ -203,14 +194,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.customCard {
-  transition: transform 0.2s ease;
-  max-width: 450px;
-}
-
-.customCard:hover {
-  transform: scale(1.03);
-}
-
+<style>
 </style>

@@ -11,7 +11,7 @@
 
         <div class="row h-100 justify-content-center align-items-center mt-3">
           <div class="col-md-4">
-            <div class="card text-white bg-dark mb-1 info-card">
+            <div class="card  bg-white mb-1 info-card">
               <div class="card-header">
                 <h4 class="card-title">總訂單數</h4>
               </div>
@@ -22,7 +22,7 @@
           </div>
 
           <div class="col-md-4">
-            <div class="card bg-light mb-1 info-card">
+            <div class="card bg-white mb-1 info-card">
               <div class="card-header">
                 <h4 class="card-title">待付款訂單</h4>
               </div>
@@ -33,7 +33,7 @@
           </div>
 
           <div class="col-md-4">
-            <div class="card text-white bg-warning mb-1 info-card">
+            <div class="card bg-white mb-1 info-card">
               <div class="card-header">
                 <h4 class="card-title">已完成訂單</h4>
               </div>
@@ -43,8 +43,9 @@
             </div>
           </div>
           <table class="table table-hover table-light mt-5">
-            <thead>
+            <thead class=" table-dark bg-dark">
               <tr>
+                <th scope="col">訂單編號</th>
                 <th scope="col">姓名</th>
                 <th scope="col">地址</th>
                 <th scope="col">訂單狀態</th>
@@ -57,7 +58,8 @@
                 @click="openOrder(order)"
                 style="cursor: pointer"
               >
-                <th scope="row">{{ order.user.name }}</th>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user.name }}</td>
                 <td>{{ order.user.address }}</td>
                 <td>
                   <span
@@ -67,7 +69,7 @@
                   >
                   <span
                     v-if="order.status === '完成訂單'"
-                    class="badge badge-pill badge-success"
+                    class="badge badge-pill badge-warning"
                     >{{ order.status }}</span
                   >
                   <span
@@ -105,15 +107,15 @@
               </div>
               <div class="modal-body">
                 <ProductCard :products="activeOrder.order" />
-                <hr class="col-xs-12 mt-3" />
-                <h6 class="text-bold">{{ activeOrder.user.name }}</h6>
+                <hr class="col-xs-10 mt-3" />
+                <h6>姓名: {{ activeOrder.user.name }}</h6>
                 <span>電話號碼: {{ activeOrder.user.phone }}</span>
                 <p>
-                  <span class="text-info">{{ activeOrder.user.address }}</span>
+                  <span>地址: {{ activeOrder.user.address }}</span>
                 </p>
 
+                <h6 class="text-info mt-2 mb-2">金額合計: NT$ {{ totalPrice }}</h6>
                 <hr class="col-xs-12 mt-3" />
-                <h6 class="text-info mt-5">總共金額: ${{ totalPrice }}</h6>
                 <h6>更改狀態</h6>
                 <div class="form-group row">
                   <div class="col-md-6">
@@ -157,7 +159,7 @@
                 </button>
                 <button
                   type="button"
-                  class="btn btn-warning"
+                  class="btn btn-outline-danger"
                   @click="deleteOrder(activeOrder)"
                 >
                   刪除訂單
@@ -280,13 +282,9 @@ export default {
   computed: {
     totalPrice() {
       if (this.activeOrder.order.length === 1) {
-        return (
-          this.activeOrder.order[0].price * this.activeOrder.order[0].quantity
-        );
+        return this.activeOrder.order[0].price * this.activeOrder.order[0].quantity;
       }
-      return this.activeOrder.order.reduce(
-        (a, b) => a.price * a.quantity + b.price * b.quantity,
-      );
+      return this.activeOrder.order.reduce((a, b) => a.price * a.quantity + b.price * b.quantity);
     },
 
     ordersPending() {
@@ -300,5 +298,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.info-card {
+  transition: transform 0.3s ease;
+  max-width: 25rem;
+  text-align: center;
+  border-radius: 0;
+  margin-top: 2rem;
+  &:hover {
+     transform: scale(1.02);
+  }
+}
 </style>

@@ -44,33 +44,40 @@
             </li>
           </ul>
         </div>
-          <div class="col-md-10 mt-md-16 mt-5">
-            <div class="row">
-              <div
-                class="col-lg-4 col-sm-6"
-                v-for="product in filterData"
-                :key="product.id"
-              >
-                <div class="product-card card border-1 mb-5">
+        <div class="col-md-10 mt-md-16 mt-5">
+          <div class="row">
+            <div
+              class="col-lg-4 col-sm-6"
+              v-for="product in filterData"
+              :key="product.id"
+            >
+              <div class="product-card card mb-5">
+                <div class="show-info"  @click="showDetails(product)">
                   <img
-                    class="card-img-top card-img"
+                    class="card-img"
                     :src="product.images[0]"
                     alt="Card image"
-                    @click="showDetails(product)"
                     style="cursor: pointer"
                   />
-                  <div class="card-body p-4 text-center">
-                    <h3 class="card-title h5 mb-4">
-                      {{ product.name }}
-                    </h3>
-                    <div class="h5" v-if="product.price">
-                      $ {{ product.price }} 元
-                    </div>
+                  <span class="info">
+                    <p>商品詳情</p>
+                  </span>
+                </div>
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between">
+                  <h3 class="card-title h6 mb-1">
+                    {{ product.name }}
+                  </h3>
+                  <div class="h6">
+                    NT$ {{ product.price }} 元
                   </div>
+                  </div>
+                   <AddToCart :ProductId="product.id" value="加到購物車" />
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </section>
@@ -79,12 +86,13 @@
 <script>
 import $ from 'jquery';
 import { db } from '../firebase/config';
+import AddToCart from '../components/AddToCart.vue';
 import ProductCardModal from '../components/ProductCardModal.vue';
 
 export default {
   name: 'AllProducts',
   components: {
-    ProductCardModal,
+    AddToCart, ProductCardModal,
   },
   data() {
     return {
@@ -118,13 +126,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped >
 .list-group {
   position: sticky;
   top: 100px;
   &-item-action {
-    // border-bottom: 3px solid rgba(0, 0, 0, 0.125);
-    color: rgb(0, 0, 0);
+    color: black;
     padding: 10px;
   }
   &:focus {
@@ -137,11 +144,8 @@ export default {
     background-color: white;
     border-color: black;
     border-bottom: 3px solid black;
-    transition: border .3s linear;
+    transition: border 0.3s linear;
   }
 }
-.product-card {
-  border: 1px solid #000;
-  border-radius: 0;
-}
+
 </style>

@@ -3,8 +3,8 @@
     <Loading v-if="loading" />
     <div class="container">
       <div class="intro">
-          <div class="col-md-12">
-            <h3>商品管理</h3>
+        <div class="col-md-12">
+          <h3>商品管理</h3>
         </div>
         <div class="row justify-content-center align-items-center">
           <div class="table-responsive">
@@ -14,8 +14,8 @@
             >
               新增商品
             </button>
-            <table class="table table-hover table-white mt-5">
-              <thead>
+            <table class="table table-hover table-light mt-5">
+              <thead class=" table-dark bg-dark">
                 <tr>
                   <th scope="col">分類</th>
                   <th scope="col">商品名</th>
@@ -77,7 +77,8 @@
                     class="form-control"
                     id="category"
                     v-model="product.category"
-                    placeholder="請輸入分類">
+                    placeholder="請輸入分類"
+                  />
                 </div>
                 <div class="form-group col-md-7">
                   <label for="name">商品名</label>
@@ -177,7 +178,8 @@ import Loading from '@/components/Loading.vue';
 export default {
   name: 'Products',
   components: {
-    VueEditor, Loading,
+    VueEditor,
+    Loading,
   },
   data() {
     return {
@@ -342,14 +344,8 @@ export default {
   cursor: pointer;
 }
 
-.info-card {
-  transition: transform 0.3s ease;
-  max-width: 25rem;
-  text-align: center;
-  margin-top: 2rem;
+.table-light td {
+  border-color: #ccc;
 }
 
-.info-card:hover {
-  transform: scale(1.02);
-}
 </style>

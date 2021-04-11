@@ -7,8 +7,8 @@
         <div class="row h-100 justify-content-center align-items-center">
           <div class="col-md-6">
             <h3>訂單確認</h3>
-            <p class="text-info">
-                已經收到您的訂單，將盡快幫您出貨!
+            <p class="text-dark">
+                已經收到您的訂單，待付款後，將盡快幫您出貨!
             </p>
             <h6 class="text-info">總共金額: ${{ totalPrice }}</h6>
           </div>
@@ -25,13 +25,10 @@
             v-if="cart.length"
             @click="addOrder"
           >
-            查看訂單並付款
+            查看訂單
           </button>
-          <router-link
-            :to="{ name: 'Checkout' }"
-            class="btn btn-outline-danger ml-2"
-            >回到結帳頁</router-link
-          >
+            <!-- 未完成  -->
+          <button class="btn btn-outline-danger ml-2">付款</button>
         </div>
       </div>
     </div>
@@ -72,7 +69,7 @@ export default {
       const order = {
         user: this.profile,
         order: this.cart,
-        status: 'pending',
+        status: '等待付款',
       };
       console.log(order);
       this.loading = true;
@@ -81,11 +78,6 @@ export default {
         .then(() => {
           this.loading = false;
           this.$router.push({ name: 'Overview' });
-
-          window.Toast.fire({
-            icon: 'success',
-            title: 'Your order has been accepted!',
-          });
         })
         .catch((err) => {
           console.error(err);

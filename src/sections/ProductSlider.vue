@@ -1,16 +1,17 @@
 <template>
   <main role="main">
       <div class="container">
-        <h1 class="text-center p-5">{{ value }}</h1>
+        <h3 class="news text-center p-5">{{ value }}</h3>
         <div class="row">
           <div
             class="col-md-4"
             v-for="product in getProducts"
             :key="product.id"
           >
-            <div class="card product-item">
+            <div class="card product-card">
               <carousel :perPage="1"
-              :paginationEnabled="false">
+              :paginationEnabled="false"
+              :autoplay="true">
                 <slide v-for="(image, index) in product.images" :key="index">
                   <img
                     :src="image"
@@ -29,7 +30,7 @@
                   >
                     {{ product.name }}
                   </h5>
-                  <h5 class="card-priceS">$ {{ product.price }}</h5>
+                  <h5 class="card-price">NT$ {{ product.price }}</h5>
                 </div>
                 <AddToCart :ProductId="product.id" value="加到購物車" />
                 <ProductCardModal />
@@ -96,13 +97,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .bg {
-//   background-image: url("/img/svg/bg-1.svg");
-
-// }
-  .products{
-        margin-top: 7rem;
-        background: #f2f2f2;
-        padding-bottom: 3rem;
-    }
 </style>

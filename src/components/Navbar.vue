@@ -8,10 +8,10 @@
       <div class="row justify-content-between align-items-center">
         <div class="col-4 d-flex jsutify-content-start mt-1">
           <router-link :to="{ name: 'ProductsList' }" class="nav-link" href="#">
-            Products
+            <span class="nav-link-left">所有商品</span>
           </router-link>
           <router-link :to="{ name: 'About' }" class="nav-link" href="#">
-            About
+            <span class="nav-link-left">關於我們</span>
           </router-link>
         </div>
         <div class="col-4 text-center mt-1">
@@ -29,7 +29,7 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <i class="far fa-user"></i>
+              <i class="far fa-user nav-link-right"></i>
             </a>
             <div class="dropdown-menu">
               <router-link class="dropdown-item" :to="{ name: 'UserProfile' }"
@@ -66,7 +66,7 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <img src="/img/svg/shopping_cart_black_18dp.svg" alt="cart">
+              <img class="nav-link-right" src="/img/svg/shopping_cart_black_18dp.svg" alt="cart">
               <span v-if="getCart.length > 0"> ({{ getCart.length }})</span>
             </a>
             <div class="dropdown-menu">
@@ -122,7 +122,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .change_bg {
   background-color: white;
   border-bottom: 1px solid #000;
@@ -135,5 +135,15 @@ export default {
   border: 1px solid #000;
   border-radius: 0;
   margin-top: 17px;
+}
+span.nav-link-left {
+  &:hover {
+   border-bottom: 2px solid #ff7566;
+  }
+}
+.nav-link-right {
+  &:hover {
+   transform: scale(1.1);
+  }
 }
 </style>

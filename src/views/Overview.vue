@@ -10,12 +10,13 @@
         </div>
       </div>
 
-      <table class="table table-hover table-white mt-5">
-        <thead>
+      <table class="table table-hover table-light mt-5">
+        <thead class=" table-dark bg-dark">
           <tr>
+            <th scope="col">訂單編號</th>
             <th scope="col">姓名</th>
             <th scope="col">地址</th>
-            <th scope="col">總共金額</th>
+            <th scope="col">金額合計</th>
             <th scope="col">訂單狀態</th>
           </tr>
         </thead>
@@ -26,7 +27,8 @@
             @click="openOrder(order)"
             style="cursor: pointer"
           >
-            <th scope="row">{{ order.user.name }}</th>
+            <td>{{ order.id }}</td>
+            <td>{{ order.user.name }}</td>
             <td>{{ order.user.address }}</td>
             <td>${{ totalPrice(order) }}</td>
             <td>
@@ -37,7 +39,7 @@
               >
               <span
                 v-if="order.status === '完成訂單'"
-                class="badge badge-pill badge-success"
+                class="badge badge-pill badge-warning"
                 >{{order.status}}</span
               >
               <span
@@ -74,18 +76,18 @@
             <div class="modal-body">
               <ProductCard :products="activeOrder.order" />
               <hr class="col-xs-10 mt-3" />
-              <h6 class="text-bold">姓名: {{ activeOrder.user.name }}</h6>
+              <h6>姓名: {{ activeOrder.user.name }}</h6>
               <span>電話: {{ activeOrder.user.phone }}</span>
               <p>
                 <span>地址: {{ activeOrder.user.address }}</span>
               </p>
               <h5 class="text-info">
-                總共金額: ${{ totalActiveOrderPrice }}
+                金額合計: NT$ {{ totalActiveOrderPrice }}
               </h5>
               <h6 class="text-secondary">
                 訂單狀態:
-                <span class="badge badge-pill badge-info">{{
-                  activeOrder.status='等待付款'
+                <span class="badge badge-pill badge-dark">{{
+                  activeOrder.status
                 }}</span>
               </h6>
             </div>
@@ -145,16 +147,13 @@ export default {
 
     openOrder(order) {
       this.activeOrder = order;
-      // console.log(this.activeOrder);
       $('#myOrderModal').modal('show');
     },
   },
   computed: {
     totalActiveOrderPrice() {
       if (this.activeOrder.order.length === 1) {
-        return (
-          this.activeOrder.order[0].price * this.activeOrder.order[0].quantity
-        );
+        return this.activeOrder.order[0].price * this.activeOrder.order[0].quantity;
       }
       return this.activeOrder.order.reduce((a, b) => a.price * a.quantity + b.price * b.quantity);
     },

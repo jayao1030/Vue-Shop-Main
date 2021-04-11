@@ -25,7 +25,7 @@
               </button>
               <h5 class="card-title">{{ product.name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">
-                ${{ product.price }}
+                NT${{ product.price }}
               </h6>
               <p class="card-text">
                 數量:
@@ -50,16 +50,17 @@
     </div>
     <div
       class="dropdown-footer d-flex justify-content-between align-items-center mt-3"
+      v-if="getCart.length"
     >
       <button
         type="button"
-        class="btn btn-outline-danger btn-sm"
+        class="btn btn-gary btn-sm"
         @click.stop="setCartEmpty()"
       >
         清空購物車
       </button>
 
-      <h6>金額合計: ${{ totalPrice }}</h6>
+      <h6>金額合計: NT${{ totalPrice }}</h6>
       <button @click.stop="goToCheckout" type="button" class="btn btn-primary">
         結帳
       </button>
@@ -101,20 +102,4 @@ export default {
 </script>
 
 <style>
-
-.customCard {
-  transition: transform 0.2s ease;
-  max-width: 450px;
-  border-radius: 0;
-}
-
-.customCard:hover {
-  transform: scale(1.01);
-}
-
-.add-item {
-  cursor: pointer;
-  font-weight: bold;
-}
-
 </style>

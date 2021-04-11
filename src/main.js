@@ -16,12 +16,11 @@ Vue.use(VueFirestore, {
   enumerable: true,
 });
 
+// 設置成 false 以阻止 vue 在啟動時生成生產提示
 Vue.config.productionTip = false;
 
 window.$ = $;
 window.jQuery = jQuery;
-
-window.Swal = Swal;
 
 let app;
 
@@ -36,6 +35,8 @@ auth.onAuthStateChanged((user) => {
   console.log(user);
 });
 
+// sweetalert
+window.Swal = Swal;
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',

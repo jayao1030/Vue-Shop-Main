@@ -45,7 +45,7 @@
                   }}</span>
                 </div>
                 <h5>{{ product.name }}</h5>
-                <h5 class="text-danger">${{ product.price }}</h5>
+                <h5 class="text-dark">NT$ {{ product.price }}</h5>
                 <p v-html="product.description"></p>
                 <div v-if="!buttonLarge" class="d-flex">
                   <button

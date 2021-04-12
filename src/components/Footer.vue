@@ -1,8 +1,7 @@
 <template>
 <footer class="text-muted">
   <div class="container">
-    <p> &copy; yao 2021</p>
-    <p>所有圖片均為練習使用，無任何商業用途</p>
+    <p> &copy; 2021. 圖片均為作品練習使用，無任何商業用途</p>
   </div>
 </footer>
 </template>

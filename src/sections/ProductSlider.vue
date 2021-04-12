@@ -16,7 +16,7 @@
                   <img
                     :src="image"
                     class="card-img-top p-1 img-logo"
-                    alt="..."
+                    alt="image"
                   />
                 </slide>
               </carousel>
@@ -25,15 +25,12 @@
                 <div class="d-flex justify-content-between">
                   <h5
                     class="card-title"
-                    style="cursor: pointer"
-                    @click="showDetails(product)"
                   >
                     {{ product.name }}
                   </h5>
                   <h5 class="card-price">NT$ {{ product.price }}</h5>
                 </div>
                 <AddToCart :ProductId="product.id" value="加到購物車" />
-                <ProductCardModal />
               </div>
             </div>
           </div>
@@ -47,7 +44,6 @@ import $ from 'jquery';
 import { Carousel, Slide } from 'vue-carousel';
 import { db } from '../firebase/config';
 import AddToCart from '../components/AddToCart.vue';
-import ProductCardModal from '../components/ProductCardModal.vue';
 
 export default {
   name: 'ProductsSlider',
@@ -64,12 +60,6 @@ export default {
     AddToCart,
     Carousel,
     Slide,
-    ProductCardModal,
-  },
-  data() {
-    return {
-      searchText: '',
-    };
   },
   firestore() {
     return {
@@ -83,7 +73,7 @@ export default {
     },
   },
   created() {
-    console.log(this.products);
+    // console.log(this.products);
   },
   computed: {
     getProducts() {

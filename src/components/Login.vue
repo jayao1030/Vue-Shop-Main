@@ -86,7 +86,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-primary w-100" @click="login">登入</button>
+                    <button class="btn btn-info w-100" @click="login">登入</button>
                   </div>
                 </div>
                 <div
@@ -135,7 +135,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-primary w-100"  @click="register">
+                    <button class="btn btn-info w-100"  @click="register">
                       註冊
                     </button>
                   </div>
@@ -174,10 +174,11 @@ export default {
         .then((user) => {
           db.collection('profiles').doc(user.user.uid).set({
             name: this.name,
+            isStaff: false,
           })
             .then(() => {
               console.log('ok');
-              this.$router.push({ name: 'Admin' });
+              this.$router.push('/');
               window.Toast.fire({
                 icon: 'success',
                 title: '註冊成功',
@@ -232,7 +233,7 @@ export default {
         .then(() => {
           console.log(auth);
           $('#login').modal('hide');
-          this.$router.push({ name: 'UserProfile' });
+          this.$router.push('/');
           window.Toast.fire({
             icon: 'success',
             title: '登入成功',
@@ -270,7 +271,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-pills .nav-link.active {
-  border-radius: 0;
-}
+
 </style>

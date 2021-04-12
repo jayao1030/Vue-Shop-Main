@@ -14,20 +14,12 @@
             <div class="col-md-3">
               <img :src="product.images[0]" alt="" width="100px" />
             </div>
-            <div class="col-md-9">
-              <button
-                type="button"
-                class="close"
-                aria-label="Close"
-                @click.stop="deleteProduct(product)"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h5 class="card-title">{{ product.name }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
+            <div class="col-md-8">
+              <h5 class="card-title mb-3 text-center">{{ product.name }}</h5>
+              <h6 class="card-subtitle mb-3 text-muted text-center">
                 NT${{ product.price }}
               </h6>
-              <p class="card-text">
+              <p class="card-text text-center">
                 數量:
                 <span
                   style="cursor: pointer"
@@ -43,6 +35,16 @@
                   >+</span
                 >
               </p>
+            </div>
+            <div class="col-md-1">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                @click.stop="deleteProduct(product)"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
           </div>
         </div>
@@ -60,8 +62,8 @@
         清空購物車
       </button>
 
-      <h6>金額合計: NT${{ totalPrice }}</h6>
-      <button @click.stop="goToCheckout" type="button" class="btn btn-primary">
+      <h6>合計: NT${{ totalPrice }}</h6>
+      <button @click.stop="goToCheckout" type="button" class="btn btn-primary col-md-2">
         結帳
       </button>
     </div>

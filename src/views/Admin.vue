@@ -66,13 +66,13 @@
                   <span>用戶資訊</span>
                 </router-link>
               </li>
-              <li>
+              <li v-if="profile.isStaff">
                 <router-link :to="{ name: 'Products'}">
                   <i class="fas fa-box"></i>
                   <span>產品</span>
                 </router-link>
               </li>
-              <li>
+              <li v-if="profile.isStaff">
                 <router-link :to="{ name: 'Orders'}">
                   <i class="far fa-list-alt"></i>
                   <span>訂單</span>

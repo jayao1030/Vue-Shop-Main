@@ -13,7 +13,7 @@
             class="d-block image-fluid"
             alt="image"
           />
-          <div class="carousel-caption text-left">
+          <div class="carousel-caption text-left mb-5">
             <h1>嬰兒童裝</h1>
             <p>Some representative placeholder content for the first slide.</p>
             <router-link
@@ -39,7 +39,7 @@
         </div>
       <div class="carousel-item">
         <img src="img/banner02.jpg" class="d-block image-fluid" alt="image" />
-        <div class="carousel-caption text-right">
+        <div class="carousel-caption text-right mb-5">
           <h1>主題童裝</h1>
           <p>Some representative placeholder content for the third slide.</p>
           <router-link
@@ -82,7 +82,7 @@ export default {};
 <style lang="scss" scoped>
 .carousel-item {
   width: 100%;
-  height: 760px;
+  height: 640px;
 
   img {
     position: absolute;
@@ -104,14 +104,14 @@ export default {};
   margin-bottom: 4rem;
 } */
  .carousel-caption {
-  bottom: 8rem;
+  bottom: 3rem;
   z-index: 10;
   h1 {
-    color: black;
+    color:rgb(34, 44, 47);
     font-size: 3rem;
   }
   p {
-    color: rgb(255, 255, 255);
+    color: white;
   }
 }
 

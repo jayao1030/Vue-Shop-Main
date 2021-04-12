@@ -28,6 +28,7 @@ a {
   background-color: #ff7566;
   border: none;
   border-radius: 0;
+  color:white;
 }
 .btn {
   border-radius: 0;
@@ -49,11 +50,28 @@ a {
 }
 
 .add-item {
+  margin: 0 10px;
+  padding: 0 5px;
+  font-size: 1.2rem;
   cursor: pointer;
   font-weight: bold;
+  &:active, &:hover {
+    color:$info;
+  }
+  
 }
+
+.nav-pills .nav-link.active {
+  border-radius: 0;
+  background: #000;
+}
+
 .card-img {
   border-radius: 0;
+}
+
+.badge-primary {
+  color: white;
 }
 
 .product-card {
@@ -88,3 +106,9 @@ a {
   }
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s ease-out;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

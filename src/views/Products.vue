@@ -27,7 +27,7 @@
                 <tr v-for="prod in products" :key="prod.id">
                   <td>{{ prod.category }}</td>
                   <td>{{ prod.name }}</td>
-                  <td>${{ prod.price }}</td>
+                  <td>NT$ {{ prod.price }}</td>
                   <td>
                     <i
                       @click="editProduct(prod)"

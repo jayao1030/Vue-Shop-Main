@@ -6,7 +6,7 @@ import Products from '../views/Products.vue';
 import Overview from '../views/Overview.vue';
 import UserProfile from '../views/UserProfile.vue';
 import Orders from '../views/Orders.vue';
-import { auth } from '../firebase/config';
+import { auth, db } from '../firebase/config';
 
 Vue.use(VueRouter);
 
@@ -29,8 +29,8 @@ const routes = [
         name: 'Products',
         component: Products,
         meta: {
-          requiresAuth: true,
-          // requiresStaff: true,
+          // requiresAuth: true,
+          requiresStaff: true,
         },
       },
       {
@@ -48,8 +48,8 @@ const routes = [
         name: 'Orders',
         component: Orders,
         meta: {
-          requiresAuth: true,
-          // requiresStaff: true,
+          // requiresAuth: true,
+          requiresStaff: true,
         },
       },
     ],
@@ -88,7 +88,19 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
+  const requiresStaff = to.matched.some((x) => x.meta.requiresStaff);
   const { currentUser } = auth;
+  if (requiresStaff) {
+    const docRef = db.collection('profiles').doc(currentUser.uid);
+    docRef.get().then((doc) => {
+      const { isStaff } = doc.data();
+      if (isStaff) {
+        next();
+      } else {
+        next('/');
+      }
+    });
+  }
 
   if (requiresAuth && !currentUser) {
     next('/');

@@ -3,7 +3,7 @@
     <button v-if="isAlreadyAdded()" class="btn btn-secondary btn-sm">
       <i class="fa fa-check" aria-hidden="true"></i> 已加入購物車
     </button>
-    <button v-else class="btn btn-primary btn-sm" @click="addToCart()">
+    <button v-else class="btn btn-info btn-sm" @click="addToCart()">
       {{ value }}
     </button>
   </div>

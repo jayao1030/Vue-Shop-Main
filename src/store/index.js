@@ -21,17 +21,12 @@ export default new Vuex.Store({
       return state.cart;
     },
     totalPrice(state) {
-      let result = 0;
-      state.cart.forEach((product) => {
-        result += product.price * product.quantity;
-      });
-      return result;
+      return state.cart.reduce((acc, total) => acc + (total.price * total.quantity), 0);
     },
   },
   mutations: {
     ADD_TO_CART(state, product) {
       const item = state.cart.find((i) => i.id === product.id);
-      console.log(product.id);
       if (item) {
         item.quantity += 1;
       } else {

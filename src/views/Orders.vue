@@ -45,7 +45,6 @@
           <table class="table table-hover table-light mt-5">
             <thead class=" table-dark bg-dark">
               <tr>
-                <th scope="col">訂單編號</th>
                 <th scope="col">姓名</th>
                 <th scope="col">地址</th>
                 <th scope="col">訂單狀態</th>
@@ -58,7 +57,6 @@
                 @click="openOrder(order)"
                 style="cursor: pointer"
               >
-                <td>{{ order.id }}</td>
                 <td>{{ order.user.name }}</td>
                 <td>{{ order.user.address }}</td>
                 <td>
@@ -281,10 +279,7 @@ export default {
   },
   computed: {
     totalPrice() {
-      if (this.activeOrder.order.length === 1) {
-        return this.activeOrder.order[0].price * this.activeOrder.order[0].quantity;
-      }
-      return this.activeOrder.order.reduce((a, b) => a.price * a.quantity + b.price * b.quantity);
+      return this.activeOrder.order.reduce((acc, total) => acc + (total.price * total.quantity), 0);
     },
 
     ordersPending() {

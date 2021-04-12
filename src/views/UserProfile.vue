@@ -48,54 +48,77 @@
             aria-labelledby="profile-tab"
           >
             <div class="container">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="">姓名</label>
-                    <input
-                      type="text"
-                      v-model="profile.name"
-                      placeholder="請輸入姓名"
-                      class="form-control"
-                    />
+                <validation-observer v-slot="{ invalid }">
+                <form @submit.prevent="updateProfile">
+                  <div class="form-row">
+                    <div class="col-md-4">
+                      <validation-provider
+                        rules="required"
+                        v-slot="{ errors, classes }"
+                      >
+                        <label for="name">姓名</label>
+                        <input
+                          name="姓名"
+                          type="text"
+                          class="form-control"
+                          v-model="profile.name"
+                          id="name"
+                          :class="classes"
+                          placeholder="請輸入姓名"
+                        />
+                        <span class="text-danger">{{ errors[0] }}</span>
+                      </validation-provider>
+                    </div>
+                    <div class="col-md-4">
+                  <validation-provider
+                    rules="required|min:10"
+                    v-slot="{ errors, classes }"
+                  >
+                    <div class="form-group">
+                      <label for="telphone">電話號碼</label>
+                      <input
+                        name="電話號碼"
+                        type="tel"
+                        class="form-control"
+                        id="telphone"
+                        v-model="profile.phone"
+                        :class="classes"
+                        placeholder="請輸入電話"
+                      />
+                      <span class="text-danger">{{ errors[0] }}</span>
+                    </div>
+                  </validation-provider>
+                    </div>
+                    <div class="col-md-8">
+                  <validation-provider
+                    rules="required"
+                    v-slot="{ errors, classes }"
+                  >
+                    <div class="form-group">
+                      <label for="address">地址</label>
+                      <input
+                        name="地址"
+                        type="address"
+                        class="form-control"
+                        v-model="profile.address"
+                        id="address"
+                        :class="classes"
+                        placeholder="請輸入地址"
+                      />
+                      <span class="text-danger">{{ errors[0] }}</span>
+                    </div>
+                  </validation-provider>
+                    </div>
+                  <input
+                    :disabled="invalid"
+                    class="btn btn-info mt-5 col-md-8"
+                    type="submit"
+                    value="更新"
+                  />
                   </div>
-                </div>
+                </form>
+              </validation-observer>
 
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="">電話號碼</label>
-                    <input
-                      type="tel"
-                      v-model="profile.phone"
-                      placeholder="請輸入電話號碼"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="">地址</label>
-                    <input
-                      type="text"
-                      v-model="profile.address"
-                      placeholder="請輸入地址"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input
-                      type="submit"
-                      @click="updateProfile"
-                      value="保存更新"
-                      class="btn btn-outline-info w-100"
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -107,7 +130,7 @@
           >
             <div class="container">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 mb-3">
                   <div class="form-group">
                     <label for="">帳號</label>
                     <input
@@ -119,7 +142,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-8 mb-3">
                   <div class="input-group">
                     <div class="custom-file">
                       <input
@@ -142,12 +165,12 @@
                       type="submit"
                       @click="updateAccount"
                       value="更新資訊"
-                      class="btn btn-outline-info w-100"
+                      class="btn btn-info w-100"
                     />
                   </div>
                 </div>
 
-                <div class="col-md-6 mt-4">
+                <div class="col-md-2 mt-4">
                   <div class="form-group">
                     <input
                       type="button"
@@ -161,7 +184,6 @@
             </div>
           </div>
         </div>
-        <hr class="col-xs-12 mt-5" />
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-7">
-            <img :src="product && product.images[0]" alt="image" width="100px" />
+            <img :src="product.images[0]" alt="image" width="100px" />
           </div>
           <div class="col-md-5">
             <h5 class="card-title" style="cursor: pointer">

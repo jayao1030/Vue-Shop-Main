@@ -177,8 +177,7 @@ export default {
             isStaff: false,
           })
             .then(() => {
-              console.log('ok');
-              this.$router.push('/');
+              this.$router.push({ name: 'UserProfile' });
               window.Toast.fire({
                 icon: 'success',
                 title: '註冊成功',
@@ -231,9 +230,8 @@ export default {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          console.log(auth);
           $('#login').modal('hide');
-          this.$router.push('/');
+          this.$router.push({ name: 'UserProfile' });
           window.Toast.fire({
             icon: 'success',
             title: '登入成功',

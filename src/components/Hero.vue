@@ -92,6 +92,7 @@ export default {};
     right: -9999px;
     margin: auto;
     height: 100%;
+    opacity: 0.8;
   }
 }
 /* GLOBAL STYLES
@@ -146,8 +147,11 @@ export default {};
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
-@media (min-width: 40em) {
+@media (max-width: 480px) {
   /* Bump up size of carousel content */
+  .carousel-item {
+  width: 100%;
+  height: 360px;
   .carousel-caption p {
     margin-bottom: 1.25rem;
     font-size: 1.25rem;
@@ -156,6 +160,7 @@ export default {};
 
   .featurette-heading {
     font-size: 50px;
+  }
   }
 }
 

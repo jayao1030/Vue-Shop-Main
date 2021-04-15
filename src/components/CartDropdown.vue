@@ -5,14 +5,14 @@
       <div v-if="getCart.length === 0">您的購物車是空的</div>
       <div
         class="card mt-2 customCard"
-        style="width: 40vw"
+        style="width: 100vw"
         v-for="product in getCart"
         :key="product.id"
       >
         <div class="card-body">
           <div class="row">
             <div class="col-md-3">
-              <img :src="product.images[0]" alt="" width="100px" />
+              <img :src="product.images[0]" alt="image" width="100" />
             </div>
             <div class="col-md-8">
               <h5 class="card-title mb-3 text-center">{{ product.name }}</h5>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div
-      class="dropdown-footer d-flex justify-content-between align-items-center mt-3"
+      class="dropdown-footer d-flex justify-content-between align-items-center mt-3 w-100"
       v-if="getCart.length"
     >
       <button
@@ -104,4 +104,7 @@ export default {
 </script>
 
 <style>
+.dropdown-footer {
+
+}
 </style>

@@ -10,7 +10,7 @@
             <p class="text-dark">
                 已經收到您的訂單，待付款後，將盡快幫您出貨!
             </p>
-            <h6 class="text-info">總共金額: ${{ totalPrice }}</h6>
+            <h6 class="text-info">總共金額: NT${{ totalPrice }}</h6>
           </div>
         </div>
       </div>

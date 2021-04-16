@@ -9,8 +9,8 @@
           </div>
         </div>
       </div>
-
-      <table class="table table-hover table-light mt-5">
+    <div class="table-responsive">
+       <table class="table table-hover table-light mt-5">
         <thead class=" table-dark bg-dark">
           <tr>
             <th scope="col">姓名</th>
@@ -49,7 +49,7 @@
           </tr>
         </tbody>
       </table>
-
+    </div>
       <div
         class="modal fade"
         id="myOrderModal"

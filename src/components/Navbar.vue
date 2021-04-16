@@ -152,8 +152,7 @@
                   />
                   <span v-if="getCart.length > 0"> ({{ getCart.length }})</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right scrollable-menu"
-                style="min-width:360px;">
+                <div class="dropdown-menu dropdown-menu-right scrollable-menu">
                   <CartDropdown />
                 </div>
               </div>
@@ -274,23 +273,8 @@ span.nav-link-left {
     background-color: #1accb4;
   }
 }
-// @media screen and (max-width: 768px) {
-//   .site-header {
-//     display: none;
-//   }
-//   .phone-header {
-//     display: block;
-//     background: white;
-//     border-bottom: 1px solid #000;
-//     .row {
-//       display: flex;
-//       justify-content: space-evenly;
-//       align-items: center;
-//     }
-//   }
-// }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:767px) {
   .site-header {
     display: none;
   }
@@ -305,6 +289,10 @@ span.nav-link-left {
       .nav-item-small {
         display: flex;
         justify-content: center;
+      }
+      .dropdown-menu {
+        margin-top: 13px;
+        max-width:360px;
       }
     }
   }

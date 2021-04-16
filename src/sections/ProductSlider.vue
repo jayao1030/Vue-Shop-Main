@@ -8,7 +8,7 @@
             v-for="product in getProducts"
             :key="product.id"
           >
-            <div class="card product-card">
+            <div class="card product-card mb-3">
               <carousel :perPage="1"
               :paginationEnabled="false"
               :autoplay="true">

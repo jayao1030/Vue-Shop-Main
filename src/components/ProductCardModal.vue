@@ -20,10 +20,11 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body mb-5">
-            <div class="row">
-              <div class="productModal_img col-md-6">
-                <carousel
+          <div class="productModal-body">
+            <div class="row d-flex justify-content-center mb-5">
+              <div class="productModal-Left col-md-6">
+                <div class="productModal-img">
+                  <carousel
                   class="VueCarousel-slide"
                   :perPage="1"
                   :paginationEnable="false"
@@ -32,31 +33,35 @@
                   <slide v-for="(image, index) in product.images" :key="index">
                     <img
                       :src="image"
-                      class="card-img-top p-1 img-logo"
+                      class="card-img-top p-1"
                       alt="image"
                     />
                   </slide>
                 </carousel>
-              </div>
-              <div class="col-md-6 d-flex flex-column justify-content-between align-items-center">
-                <div>
-                  <span class="border p-1">{{
-                    product.category
-                  }}</span>
                 </div>
-                <h5>{{ product.name }}</h5>
-                <h5 class="text-dark">NT$ {{ product.price }}</h5>
-                <p v-html="product.description"></p>
-                <div v-if="!buttonLarge" class="d-flex">
+              </div>
+              <div class="col-md-6 productModal-Right">
+                <div class="productModal-Right-Top">
+                   <p class=" p-1 productModal-category ">{{
+                    product.category
+                  }}</p>
+                <p class="productModal-title">{{ product.name }}</p>
+                <p class="productModal-price">NT$ {{ product.price }}</p>
+                </div>
+                <div class="productModal-Right-Center">
+                   <p class="productModal-desc" v-html="product.description"></p>
+                </div>
+                <div class="productModal-Right-Bottom">
+                  <div v-if="!buttonLarge" class="d-flex">
                   <button
                     v-if="isAlreadyAdded()"
-                    class="btn btn-secondary btn-sm"
+                    class="btn btn-secondary btn-sm productModal-addtoCart"
                   >
                     <i class="fa fa-check" aria-hidden="true"></i> 已加入購物車
                   </button>
                   <button
                     v-else
-                    class="btn btn-primary"
+                    class="btn btn-primary productModal-addtoCart"
                     @click="addToCart()"
                   >
                     加入購物車
@@ -65,7 +70,7 @@
                 <div v-else>
                   <button
                     v-if="isAlreadyAdded()"
-                    class="btn btn-secondary btn-sm"
+                    class="btn btn-secondary btn-sm productModal-addtoCart"
                     style="height: 100%"
                   >
                     <i class="fa fa-check" aria-hidden="true"></i> 已加入購物車
@@ -73,11 +78,12 @@
                   <button
                     v-else
                     @click="addToCart()"
-                    class="btn btn-info px-5"
+                    class="btn btn-info px-5 productModal-addtoCart"
                     style="height: 100%"
                   >
                     加入購物車
                   </button>
+                </div>
                 </div>
               </div>
             </div>
@@ -132,11 +138,123 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" >
 .VueCarousel-slide {
   visibility: visible;
   flex-basis: 100%;
   width: 100%;
-  height: 430px;
+  .VueCarousel-dot-container {
+    margin-top: 0;
+  }
 }
+.productModal-body {
+  .productModal-Left {
+    height: 100%;
+    .productModal-img {
+      width: 100%;
+    }
+  }
+  .productModal-Right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    .productModal-Right-Top {
+      .productModal-category {
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        text-align: center;
+        border: 1px solid #ccc;
+        color: #999;
+      }
+      .productModal-title {
+        font-weight: 700;
+        font-size: 1.4rem;
+        letter-spacing: .3rem;
+        text-align: center;
+      }
+      .productModal-price {
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        text-align: center;
+      }
+    }
+    .productModal-Right-Center {
+      margin-bottom: 5%;
+      width: 100%;
+      font-size: .8rem;
+      letter-spacing: .05rem;
+      text-align: center;
+    }
+    .productModal-Right-Bottom {
+      width: 70%;
+      .productModal-addtoCart {
+        width: 100%;
+        padding: 3% 10%;
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:767px) {
+  .productModal-body {
+  .productModal-Left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .productModal-img {
+      width: 50%;
+    }
+  }
+  .productModal-Right {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .productModal-Right-Top {
+      margin-top: 3%;
+      .productModal-category {
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        text-align: center;
+        border: 1px solid #ccc;
+        color: #999;
+      }
+      .productModal-title {
+        font-weight: 700;
+        font-size: 1.4rem;
+        letter-spacing: .3rem;
+        text-align: center;
+      }
+      .productModal-price {
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        text-align: center;
+      }
+    }
+    .productModal-Right-Center {
+      margin-bottom: 5%;
+      width: auto;
+      font-size: .8rem;
+      letter-spacing: .05rem;
+      text-align: center;
+    }
+    .productModal-Right-Bottom {
+      width: 70%;
+      .productModal-addtoCart {
+        width: 100%;
+        padding: 3% 10%;
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        text-align: center;
+      }
+    }
+  }
+}
+}
+
 </style>

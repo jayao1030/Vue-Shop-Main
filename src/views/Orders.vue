@@ -42,6 +42,7 @@
               </div>
             </div>
           </div>
+          <div class="table-responsive">
           <table class="table table-hover table-light mt-5">
             <thead class=" table-dark bg-dark">
               <tr>
@@ -79,6 +80,7 @@
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
 
         <!--order modal -->

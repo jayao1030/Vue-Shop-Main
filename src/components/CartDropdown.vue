@@ -11,10 +11,10 @@
       >
         <div class="card-body">
           <div class="row">
-            <div class="col-md-3">
-              <img :src="product.images[0]" alt="image" width="100" />
+            <div class="item">
+              <img :src="product.images[0]" alt="image" class="imgs" width="100" />
             </div>
-            <div class="col-md-8">
+            <div class="flex-2 item">
               <h5 class="card-title mb-3 text-center">{{ product.name }}</h5>
               <h6 class="card-subtitle mb-3 text-muted text-center">
                 NT${{ product.price }}
@@ -36,7 +36,7 @@
                 >
               </p>
             </div>
-            <div class="col-md-1">
+            <div class="item">
               <button
                 type="button"
                 class="close"
@@ -56,14 +56,14 @@
     >
       <button
         type="button"
-        class="btn btn-gary btn-sm"
+        class="btn btn-clear"
         @click.stop="setCartEmpty()"
       >
         清空購物車
       </button>
 
       <h6>合計: NT${{ totalPrice }}</h6>
-      <button @click.stop="goToCheckout" type="button" class="btn btn-primary col-md-2">
+      <button @click.stop="goToCheckout" type="button" class="btn btn-primary">
         結帳
       </button>
     </div>
@@ -103,8 +103,44 @@ export default {
 };
 </script>
 
-<style>
-.dropdown-footer {
+<style lang="scss" scoped>
+.customCard {
+    max-width:400px;
+    .row {
+      display: flex;
+      .item {
+        flex: 1;
+      .card-title {
+        font-size: 18px;
+      }
+      }
+      .flex-2  {
+        flex-grow: 5;
+        font-size: 20px;
+      }
+    }
+  }
 
+@media screen and (max-width:768px) {
+  .customCard {
+    max-width: 320px;
+    .row {
+      display: flex;
+      flex-wrap: nowrap;
+      .item {
+        flex: 1;
+      .card-title {
+        font-size: 18px;
+      }
+      .close {
+        font-size: 14px;
+      }
+      }
+      .flex-2  {
+        flex-grow: 7;
+        font-size: 16px;
+      }
+    }
+  }
 }
 </style>

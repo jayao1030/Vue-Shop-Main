@@ -8,12 +8,51 @@
           <h4 class="mb-5">購買清單</h4>
           <div v-if="getCart.length === 0">您的購物車是空的</div>
           <div
-            class="card mt-2 customCard"
-            style="width: 40vw"
+            class="card mt-2 customCard scrollable-menu"
+            style="width: 100vw"
             v-for="product in getCart"
             :key="product.id"
           >
-            <div class="card-body">
+           <div class="card-body">
+          <div class="row">
+            <div class="item">
+              <img :src="product.images[0]" alt="image" class="imgs" width="100" />
+            </div>
+            <div class="flex-2 item">
+              <h5 class="card-title mb-3 text-center">{{ product.name }}</h5>
+              <h6 class="card-subtitle mb-3 text-muted text-center">
+                NT${{ product.price }}
+              </h6>
+              <p class="card-text text-center">
+                數量:
+                <span
+                  style="cursor: pointer"
+                  class="add-item"
+                  @click.stop="decreaseProduct(product)"
+                  >-</span
+                >
+                {{ product.quantity }}
+                <span
+                  style="cursor: pointer"
+                  class="add-item"
+                  @click.stop="addProduct(product)"
+                  >+</span
+                >
+              </p>
+            </div>
+            <div class="item">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                @click.stop="deleteProduct(product)"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+            <!-- <div class="card-body">
               <button
                 type="button"
                 class="close"
@@ -55,10 +94,10 @@
                   </p>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-3 p-5">
           <div class="row mt-2" v-if="getCart.length">
             <h6 class="text-secondary" v-if="!user">
               要完成購物，您必須先
@@ -236,5 +275,60 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.customCard {
+    max-width:400px;
+    .row {
+      display: flex;
+      .item {
+        flex: 1;
+      .card-title {
+        font-size: 18px;
+      }
+      }
+      .flex-2  {
+        flex-grow: 5;
+        font-size: 20px;
+      }
+    }
+  }
+
+@media screen and (max-width:768px) {
+  .scrollable-menu {
+  height: auto;
+  max-height: 480px;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #ccc;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: #1accb4;
+  }
+  }
+  .customCard {
+    max-width: 320px;
+    .row {
+      display: flex;
+      flex-wrap: nowrap;
+      .item {
+        flex: 1;
+      .card-title {
+        font-size: 18px;
+      }
+      .close {
+        font-size: 14px;
+      }
+      }
+      .flex-2  {
+        flex-grow: 7;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 </style>

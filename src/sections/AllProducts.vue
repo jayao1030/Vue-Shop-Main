@@ -11,7 +11,7 @@
                 href="#"
                 @click.prevent="searchText = ''"
                 :class="{ active: searchText === '' }"
-                class="list-group-item list-group-item-action h5"
+                class="list-group-item list-group-item-action h6"
                 >所有商品</a
               >
             </li>
@@ -20,7 +20,7 @@
                 href="#"
                 @click.prevent="searchText = '嬰兒'"
                 :class="{ active: searchText === '嬰兒' }"
-                class="list-group-item list-group-item-action h5"
+                class="list-group-item list-group-item-action h6"
                 >嬰兒童裝</a
               >
             </li>
@@ -29,7 +29,7 @@
                 href="#"
                 @click.prevent="searchText = '幼兒'"
                 :class="{ active: searchText === '幼兒' }"
-                class="list-group-item list-group-item-action h5"
+                class="list-group-item list-group-item-action h6"
                 >幼兒童裝</a
               >
             </li>
@@ -38,7 +38,7 @@
                 href="#"
                 @click.prevent="searchText = '主題'"
                 :class="{ active: searchText === '主題' }"
-                class="list-group-item list-group-item-action h5"
+                class="list-group-item list-group-item-action h6"
                 >主題童裝</a
               >
             </li>
@@ -63,16 +63,16 @@
                     <p>商品詳情</p>
                   </span>
                 </div>
-                <div class="card-body p-4">
-                  <div class="d-flex justify-content-between">
-                  <h3 class="card-title h6 mb-1">
-                    {{ product.name }}
-                  </h3>
-                  <div class="h6">
-                    NT$ {{ product.price }} 元
+                <div class="card-body p-3">
+                  <div class="d-flex justify-content-between mb-3">
+                      <h3 class="card-title mb-1">
+                        {{ product.name }}
+                      </h3>
+                      <div class="card-price">
+                      NT$ {{ product.price }} 元
+                      </div>
                   </div>
-                  </div>
-                   <AddToCart :ProductId="product.id" value="加到購物車" />
+                   <AddToCart :ProductId="product.id" value="加入購物車" />
                 </div>
               </div>
             </div>
@@ -146,6 +146,21 @@ export default {
     border-bottom: 3px solid black;
     transition: border 0.3s linear;
   }
+}
+
+.card-title {
+  font-weight:500;
+  font-size: 1rem;
+  letter-spacing: .1rem;
+  text-align: center;
+}
+
+@media screen and (min-width:768px) {
+  .list-group {
+  &-item-action {
+    padding: 3px;
+   }
+ }
 }
 
 </style>

@@ -7,6 +7,8 @@ import {
 } from 'vee-validate';
 import * as rules from 'vee-validate/dist/rules';
 import tw from 'vee-validate/dist/locale/zh_TW.json';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import store from './store';
 import { auth } from './firebase/config';
 import App from './App.vue';
@@ -47,6 +49,12 @@ let app;
 auth.onAuthStateChanged((user) => {
   if (!app) {
     new Vue({
+      created() {
+        AOS.init({
+          // 動畫時間
+          duration: 600,
+        });
+      },
       router,
       store,
       render: (h) => h(App),

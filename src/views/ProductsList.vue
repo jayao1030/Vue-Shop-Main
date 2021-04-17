@@ -3,7 +3,6 @@
     <Navbar />
     <div class="container mt-5">
       <AllProducts />
-      <!-- <ProductSlider/> -->
     </div>
     <Footer />
   </div>

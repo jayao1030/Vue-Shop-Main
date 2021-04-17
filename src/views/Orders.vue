@@ -198,7 +198,7 @@ export default {
           {
             description: null,
             id: null,
-            images: null,
+            images: [],
             name: null,
           },
         ],

@@ -52,49 +52,6 @@
             </div>
           </div>
         </div>
-            <!-- <div class="card-body">
-              <button
-                type="button"
-                class="close"
-                aria-label="Close"
-                @click="deleteProduct(product)"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <div class="row col">
-                <div class="col-md-5">
-                  <img :src="product.images[0]" alt="" width="100px" />
-                </div>
-                <div class="col-md-7">
-                  <h5
-                    class="card-title mb-3"
-                    style="cursor: pointer"
-                    @click="showDetails(product)"
-                  >
-                    {{ product.name }}
-                  </h5>
-                  <h6 class="card-subtitle mb-3 text-muted">
-                    $ {{ product.price }}
-                  </h6>
-                  <p class="card-text">
-                    數量:
-                    <span
-                      style="cursor: pointer"
-                      class="add-item"
-                      @click="decreaseProduct(product)"
-                      >-</span
-                    >
-                    {{ product.quantity }}
-                    <span
-                      style="cursor: pointer"
-                      class="add-item"
-                      @click="addProduct(product)"
-                      >+</span
-                    >
-                  </p>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
         <div class="col-md-6 mt-3 p-5">

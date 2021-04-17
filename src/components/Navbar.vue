@@ -274,7 +274,30 @@ span.nav-link-left {
   }
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:768px) {
+  .site-header {
+    display: none;
+  }
+  .phone-header {
+    display: block;
+    background: white;
+    border-bottom: 1px solid #000;
+    .row {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      .nav-item-small {
+        display: flex;
+        justify-content: center;
+      }
+      .dropdown-menu {
+        margin-top: 13px;
+        max-width:360px;
+      }
+    }
+  }
+}
+@media screen and (max-width:375px) {
   .site-header {
     display: none;
   }

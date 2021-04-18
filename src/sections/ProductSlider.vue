@@ -1,50 +1,44 @@
 <template>
   <main role="main">
-      <div class="container">
-        <h3 class="news p-5">{{ value }}</h3>
-        <div class="row">
-          <ProductCardModal />
-          <div
-            class="col-lg-4 col-sm-6"
-            v-for="product in getProducts"
-            :key="product.id"
-          >
-            <div class="card product-card mb-3" data-aos="fade-up" data-aos-duration="800">
-              <carousel :perPage="1"
-              :paginationEnabled="false"
-              :autoplay="true">
-                <slide v-for="(image, index) in product.images" :key="index">
-                  <img
-                    :src="image"
-                    class="card-img-top p-1 img-logo"
-                    alt="image"
-                     @click="showDetails(product)"
-                     style="cursor:pointer;"
-                  />
-                </slide>
-              </carousel>
-
-              <div class="card-body">
-                <div class="d-flex justify-content-between">
-                  <h5
-                    class="card-title"
-                  >
-                    {{ product.name }}
-                  </h5>
-                  <h5 class="card-price">NT$ {{ product.price }}</h5>
-                </div>
-                <AddToCart :ProductId="product.id" value="加入購物車" />
-              </div>
+    <div class="container">
+      <h3 class="news p-5">{{ value }}</h3>
+      <div class="row">
+        <div
+          class="col-lg-4 col-sm-6"
+          v-for="product in getProducts"
+          :key="product.id"
+        >
+          <div class="product-card card mb-5">
+            <div class="show-info" @click="showDetails(product)">
+              <img
+                class="card-img"
+                :src="product.images[0]"
+                alt="Card image"
+                style="cursor: pointer"
+              />
+              <span class="info">
+                <p>商品詳情</p>
+              </span>
             </div>
-           </div>
+            <div class="card-body p-3">
+              <div class="d-flex justify-content-between mb-3">
+                <h3 class="card-title mb-1">
+                  {{ product.name }}
+                </h3>
+                <div class="card-price">NT$ {{ product.price }} 元</div>
+              </div>
+              <AddToCart :ProductId="product.id" value="加入購物車" />
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <ProductCardModal />
   </main>
 </template>
 
 <script>
 import $ from 'jquery';
-import { Carousel, Slide } from 'vue-carousel';
 import { db } from '../firebase/config';
 import AddToCart from '../components/AddToCart.vue';
 import ProductCardModal from '../components/ProductCardModal.vue';
@@ -62,8 +56,6 @@ export default {
   },
   components: {
     AddToCart,
-    Carousel,
-    Slide,
     ProductCardModal,
   },
   firestore() {
@@ -93,22 +85,27 @@ export default {
 
 <style lang="scss" scoped>
 .news {
-  font-weight:500;
+  font-weight: 500;
   font-size: 2rem;
-  letter-spacing: .5rem;
+  letter-spacing: 0.5rem;
   text-align: center;
   position: relative;
 }
-  .card-title {
-  font-weight:500;
+.card-title {
+  font-weight: 500;
   font-size: 1rem;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   text-align: center;
 }
 .card-price {
-    font-size: .8rem;
-    letter-spacing: .05rem;
-    text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  text-align: center;
 }
 
+.VueCarousel-slide {
+  visibility: visible;
+  flex-basis: 100%;
+  width: 100%;
+}
 </style>
